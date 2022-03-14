@@ -65,8 +65,9 @@ I want to be able to…
 
 ## Data Models
 ### Team
-- Team Name
-- Team Description
+- name
+- description
+- createdAt
 - Users from User
 - Projects from Project
 

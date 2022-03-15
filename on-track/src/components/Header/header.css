@@ -1,0 +1,31 @@
+header{
+    width: 100%;
+    background-color: #d00005;
+    height: 90px;
+}
+
+.header-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.burger-placeholder{
+    width: 65px;
+    height: 65px;
+    background-color: #1d95ec;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.title{
+   margin-top: 20px;
+   color: #fff
+}
+
+.signin-button{
+    width: 90px;
+    height: 35px;
+    margin-top: 20px;
+    margin-right: 10px;
+}

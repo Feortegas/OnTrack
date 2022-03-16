@@ -1,4 +1,5 @@
 import React from 'react';
+import './meetus.css';
 
 function MeetTheDevs() {
   return (
@@ -7,15 +8,31 @@ function MeetTheDevs() {
         {/* remove placeholder once real development on component begins */}
 
         <div className="section box">
-          <h1>Meet The Devs</h1>
-          <br />
-          <p> Look who built this site!</p>
-          <ul>
-            <li>Fernando</li>
-            <li>Jojo</li>
-            <li>Henry</li>
-            <li>Edison</li>
-          </ul>
+          <div>
+            <h2>The creators of OnTrack</h2>
+          </div>
+          <div>
+            <ul>
+              <li>
+              <img
+                src={require('../../assets/images/henry.jpeg')}
+                alt="Henry"
+              />
+              </li>
+              <li>
+              <img
+                src={require('../../assets/images/edison.jpg')}
+                alt="Edison"
+              />
+              </li>
+              <li>
+                <p>Jojo</p>
+              </li>
+              <li>
+                <p>Fernando</p>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
     </>

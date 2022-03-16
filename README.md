@@ -78,18 +78,18 @@ I want to be able to…
 - project from Project
 
 ### Project
-- Project ID
-- Project Title
-- Project URL from GitHub API
-- Project Completion Date
-- Issues from Issue
+- projectID
+- projectTitle
+- projectURL
+- completionDate
+- issues from Issue
 
 ### Issue
-- Issue ID
-- Issue Title
-- Issue Description
-- Issue Assigned to
-- Issue Duration
+- issueID
+- title
+- description
+- username
+- duration
 
 ## Coding Standards
 - Single quote

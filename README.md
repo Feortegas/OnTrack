@@ -72,23 +72,24 @@ I want to be able to…
 - Projects from Project
 
 ### User
-- Username
-- Email
-- Password
-- Created at
+- username
+- email
+- password
+- project from Project
 
 ### Project
-- Project Name
-- Project Description
-- Project URL from GitHub API
-- Project Completion Date
-- Issues from Issue
+- projectID
+- projectTitle
+- projectURL
+- completionDate
+- issues from Issue
 
 ### Issue
-- Issue Title
-- Issue Description
-- Issue Assigned to
-- Issue Duration
+- issueID
+- title
+- description
+- username
+- duration
 
 ## Coding Standards
 - Single quote

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './footer.css';
 
 function Footer() {
@@ -6,10 +7,10 @@ function Footer() {
     <footer>
       <ul className="footer-container">
         <li className="footer-li" id="meet-us">
-          Meet the devs
+          <Link to="meetTheDevs">Meet the devs</Link>
         </li>
         <li className="footer-li" id="on-track">
-          (c)onTrack
+          ©OnTrack
         </li>
         <li className="footer-li" id="cute">
           <a

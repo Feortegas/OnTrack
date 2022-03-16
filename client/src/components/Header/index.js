@@ -11,8 +11,8 @@ function Header() {
 
   return (
     <header>
-      <div className="header-container ">
-        <nav className="navbar ">
+      <div>
+        <nav className="navbar">
           {/* Hamburger menu */}
           <div
             role="button"
@@ -47,14 +47,14 @@ function Header() {
             </div>
           </div>
         </nav>
-        <div className="element">
+
+        <div className="element header-container">
+          <div className="burger-placeholder"></div>
           <h1 className="title">
-            <Link to="/dashboard" className="title">
+            <Link to="/dashboard" className="white-text">
               OnTrack
             </Link>
           </h1>
-        </div>
-        <div className="element">
           <button className="signin-button">Sign In</button>
         </div>
       </div>

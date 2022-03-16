@@ -24,8 +24,8 @@ function App() {
             <Route path="/meetTheDevs" element={<MeetTheDevs />} />
           </Routes>
         </main>
+        <Footer />
       </Router>
-      <Footer />
     </div>
   );
 }

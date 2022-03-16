@@ -1,31 +1,42 @@
-header{
-    width: 100%;
-    background-color: #d00005;
-    height: 90px;
+header {
+  width: 100%;
+  background-color: #d00005;
+  height: 90px;
 }
 
-.header-container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+.title {
+  margin-top: 20px;
 }
 
-.burger-placeholder{
-    width: 65px;
-    height: 65px;
-    background-color: #1d95ec;
-    margin-top: 10px;
-    margin-left: 10px;
+.white-text {
+  color: #fff;
 }
 
-.title{
-   margin-top: 20px;
-   color: #fff
+.header-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-.signin-button{
-    width: 90px;
-    height: 35px;
-    margin-top: 20px;
-    margin-right: 10px;
+.signin-button {
+  width: 90px;
+  height: 35px;
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
+.signin-positon {
+  display: flex;
+  justify-content: right;
+}
+
+.navbar {
+  position: absolute;
+}
+
+a:hover,
+a:visited,
+a:link,
+a:active {
+  text-decoration: none;
 }

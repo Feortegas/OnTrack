@@ -72,19 +72,20 @@ I want to be able to…
 - Projects from Project
 
 ### User
-- Username
-- Email
-- Password
-- Created at
+- username
+- email
+- password
+- project from Project
 
 ### Project
-- Project Name
-- Project Description
+- Project ID
+- Project Title
 - Project URL from GitHub API
 - Project Completion Date
 - Issues from Issue
 
 ### Issue
+- Issue ID
 - Issue Title
 - Issue Description
 - Issue Assigned to

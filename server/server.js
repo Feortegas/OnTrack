@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-
 const api = require('./api/github');
 
 const db = require('./config/connection');
@@ -10,7 +9,6 @@ const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use('/api', api);
 
 // Serve up static assets
 // if (process.env.NODE_ENV === 'production') {

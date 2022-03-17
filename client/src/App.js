@@ -12,7 +12,7 @@ import MeetTheDevs from './components/MeetTheDevs';
 
 function App() {
   return (
-    <div className="test">
+    <div>
       <Router>
         <main>
           <Header />

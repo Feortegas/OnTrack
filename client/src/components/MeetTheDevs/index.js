@@ -7,23 +7,23 @@ function MeetTheDevs() {
       <section>
         {/* remove placeholder once real development on component begins */}
 
-        <div className="section box">
+        <div className="section ">
           <div>
             <h2>The creators of OnTrack</h2>
           </div>
           <div>
             <ul>
               <li>
-              <img
-                src={require('../../assets/images/henry.jpeg')}
-                alt="Henry"
-              />
+                <img
+                  src={require('../../assets/images/henry.jpeg')}
+                  alt="Henry"
+                />
               </li>
               <li>
-              <img
-                src={require('../../assets/images/edison.jpg')}
-                alt="Edison"
-              />
+                <img
+                  src={require('../../assets/images/edison.jpg')}
+                  alt="Edison"
+                />
               </li>
               <li>
                 <p>Jojo</p>

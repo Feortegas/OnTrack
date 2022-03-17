@@ -1,29 +1,25 @@
 const fetch = require('node-fetch');
+// import { fetch } from 'node-fetch';
+// const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+const username = 'feortegas';
 
 // fetch user repos from the api url
 const getUserRepos = function (user) {
 	// format the github api url
 	const apiUrl = `https://api.github.com/users/${user}/repos`;
+	console.log(apiUrl);
 
 	// make a request to the url
 	fetch(apiUrl)
-		.then(function (response) {
-			if (response.ok) {
-				response.json().then(function (data) {
-					// displayRepos(data, user);
-					console.log('data.name');
-				});
-			} else {
-				// throw error message
-			}
-		})
-		.catch(function (error) {
-			// throw error message
+		.then((res) => res.json())
+		.then((data) => {
+			console.log(
+				'repo name is: ' + data[0].name + ' and the url is: ' + data[0].html_url
+			);
 		});
 };
 
-// getUserRepos(feortegas);
-console.log('this is running');
+getUserRepos(username);
 
 // fetch repo projects from the api url
 

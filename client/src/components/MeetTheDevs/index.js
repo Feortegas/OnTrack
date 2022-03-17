@@ -7,7 +7,7 @@ function MeetTheDevs() {
       <section>
         {/* remove placeholder once real development on component begins */}
 
-        <div className="section box">
+        <div className="section ">
           <div>
             <h2>The creators of OnTrack</h2>
           </div>

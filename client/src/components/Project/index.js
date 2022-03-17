@@ -6,15 +6,15 @@ import './project.css';
 function Project() {
   return (
     <>
-      <section className="section container ">
-        <h1 className="section-title title">Current Project</h1>
-        <div className="box center section">
+      <section className="section  ">
+        <h1 className="center">Current Project</h1>
+        <div className="center section">
           <h2>No project selected</h2>
         </div>
         <div className="section center">
           <h3>Select a new project</h3>
         </div>
-        <div className="center">
+        <div className="center ">
           <button className="button is-info is-rounded">
             <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
           </button>

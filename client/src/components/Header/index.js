@@ -18,7 +18,7 @@ function Header() {
   };
 
   return (
-    <header>
+    <header className="background-color-secondary">
       <div>
         <nav className="navbar">
           {/* Hamburger menu */}

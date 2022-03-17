@@ -7,7 +7,7 @@ function Footer() {
     <footer>
       <ul className="footer-container">
         <li className="footer-li" id="meet-us">
-          <Link to="meetTheDevs" class="meet-the-devs">Meet the devs</Link>
+          <Link to="meetTheDevs" className="meet-the-devs">Meet the devs</Link>
         </li>
         <li className="footer-li" id="on-track">
           ©OnTrack

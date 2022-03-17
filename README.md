@@ -92,8 +92,9 @@ I want to be able to…
 - duration
 
 ## Coding Standards
+- use Prettier VSCode extension
 - Single quote
-- Tab Size 4
+- Tab Size 2
 
 ## Future Development
 - AWS - store user images for example

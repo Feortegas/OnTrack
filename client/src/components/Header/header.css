@@ -20,16 +20,9 @@ header {
   justify-content: space-between;
 }
 
-.signin-button {
-  width: 90px;
-  height: 35px;
+.navSign {
   margin-top: 20px;
   margin-right: 10px;
-}
-
-.signin-positon {
-  display: flex;
-  justify-content: right;
 }
 
 .navbar {

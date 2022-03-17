@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown, faChartGantt } from '@fortawesome/free-solid-svg-icons';
 import './header.css';
 
 function Header() {
@@ -9,11 +11,11 @@ function Header() {
     setIsHamburgerOpen(!isHamburgerOpen);
   };
 
-  // const [isSignOpen, setIsSignOpen] = useState(false);
+  const [isSignOpen, setIsSignOpen] = useState(false);
 
-  // const toggleSign = () => {
-  //   setIsSignOpen(!isSignOpen);
-  // };
+  const toggleSign = () => {
+    setIsSignOpen(!isSignOpen);
+  };
 
   return (
     <header>
@@ -54,14 +56,43 @@ function Header() {
           </div>
         </nav>
 
+        {/* Website Title */}
         <div className="element header-container">
           <div className="burger-placeholder"></div>
           <h1 className="title">
             <Link to="/dashboard" className="white-text">
-              OnTrack
+              <FontAwesomeIcon icon={faChartGantt}></FontAwesomeIcon>
+              &nbsp;OnTrack
             </Link>
           </h1>
-          <button className="signin-button">Sign In</button>
+
+          {/* Sign In dropdown */}
+          <div className={`dropdown is-right ${isSignOpen ? 'is-active' : ''}`}>
+            <div className="dropdown-trigger">
+              <button
+                className="button navSign"
+                aria-haspopup="true"
+                aria-controls="dropdown-menu6"
+                onClick={() => toggleSign()}
+              >
+                <span>Sign In</span>
+                <span className="icon is-small">
+                  <i aria-hidden="true">
+                    <FontAwesomeIcon icon={faAngleDown}></FontAwesomeIcon>
+                  </i>
+                </span>
+              </button>
+            </div>
+            <div className="dropdown-menu" id="dropdown-menu6" role="menu">
+              <div className="dropdown-content">
+                <div className="dropdown-item">
+                  <input className="input" type="text" placeholder="email" />
+                  <input className="input" type="text" placeholder="password" />
+                  <button className="button"> Sign In </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </header>

@@ -1,11 +1,13 @@
 header {
   width: 100%;
-  background-color: #d00005;
   height: 90px;
+  background-color: rgb(22, 27, 34);
+  border-bottom: 3px solid #000000;
 }
 
 .title {
   margin-top: 20px;
+  margin-left: 100px;
 }
 
 .white-text {
@@ -32,6 +34,8 @@ header {
 
 .navbar {
   position: absolute;
+  margin-top: 20px;
+  margin-left: 10px;
 }
 
 a:hover,

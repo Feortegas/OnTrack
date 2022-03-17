@@ -27,16 +27,14 @@ const typeDefs = gql`
 
   type Query {
     users: [User]
-    projects(projectID: String, title: String): [Project]
+    projects: [Project]
     project(_id: ID!): Project
   }
 
   type Query {
     me: User
     users: [User]
-    user(username: String!): User
     projects(username: String): [Project]
-    project(_id: ID!): Project
   }
 
   type Mutation {
@@ -46,7 +44,7 @@ const typeDefs = gql`
       projectID: String!
       projectTitle: String!
       projectURL: String!
-    ): Thought
+    ): Project
     addIssue(
       projectId: ID!
       issueID: Int!

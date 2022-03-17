@@ -6,7 +6,7 @@ function Landing() {
       <section>
         {/* remove placeholder once real development on component begins */}
 
-        <div className="section box">
+        <div className="section ">
           <h1>Landing</h1>
           <br />
           <p> Here's why you should use OnTrack...</p>

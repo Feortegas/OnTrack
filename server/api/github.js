@@ -20,6 +20,24 @@ const getRepos = (user) => {
 		});
 };
 
+// fetch user repos from the api url
+const getUser = (user) => {
+	// format the github api url
+	const apiUrl = `https://api.github.com/users/${user}`;
+
+	// make a request to the url
+	fetch(apiUrl)
+		.then((res) => res.json())
+		.then((data) => {
+			console.log(
+				'user login is: ' +
+					data.login +
+					' and the avatar url is: ' +
+					data.avatar_url
+			);
+		});
+};
+
 // fetch repo projects from the api url - NOT ACTIVE ONCE REQUIRES AUTHENTICATION
 // const getProjects = (repo) => {
 // 	const apiUrl = ``;
@@ -56,4 +74,6 @@ getRepos(userName);
 
 getIssues(userName, repoName);
 
-module.exports = getRepos;
+getUser(userName);
+
+module.exports = { getRepos, getUser, getIssues };

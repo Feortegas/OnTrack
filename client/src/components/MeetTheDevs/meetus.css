@@ -1,4 +1,10 @@
-img{
-    width: 200px;
-    height: 400px;
+/*.img-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+}*/
+
+.profile-img{
+    width: 500px;
 }

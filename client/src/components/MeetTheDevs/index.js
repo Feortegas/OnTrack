@@ -11,25 +11,35 @@ function MeetTheDevs() {
           <div>
             <h2>The creators of OnTrack</h2>
           </div>
-          <div>
+          <div className="img-container">
             <ul>
               <li>
               <img
-                src={require('../../assets/images/henry.jpeg')}
+                src={require('../../assets/images/henry.jpg')}
                 alt="Henry"
+                className="profile-img"
               />
               </li>
               <li>
               <img
                 src={require('../../assets/images/edison.jpg')}
                 alt="Edison"
+                className="profile-img"
               />
               </li>
               <li>
-                <p>Jojo</p>
+                <img
+                  src={require('../../assets/images/fernando.png')}
+                  alt="Edison"
+                  className="profile-img"
+                />
               </li>
               <li>
-                <p>Fernando</p>
+                <img
+                  src={require('../../assets/images/jojo.png')}
+                  alt="Edison"
+                  className="profile-img"
+                />
               </li>
             </ul>
           </div>

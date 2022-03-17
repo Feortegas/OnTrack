@@ -18,38 +18,54 @@ function Header() {
   };
 
   return (
-    <header className="background-color-secondary">
+    <header className='background-color-secondary'>
       <div>
-        <nav className="navbar">
+        <nav className='navbar'>
           {/* Hamburger menu */}
           <div
-            role="button"
+            role='button'
             className={`navbar-burger ${isHamburgerOpen ? 'is-active' : ''}`}
-            aria-label="menu"
-            aria-expanded="false"
+            aria-label='menu'
+            aria-expanded='false'
             onClick={() => toggleNav()}
           >
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
+            <span aria-hidden='true'></span>
+            <span aria-hidden='true'></span>
+            <span aria-hidden='true'></span>
           </div>
 
           {/* Menu content */}
           <div
-            id="navMenu"
+            id='navMenu'
             className={`navbar-menu ${isHamburgerOpen ? 'is-active' : ''}`}
           >
-            <div className="navbar-start">
-              <Link to="/dashboard" className="navbar-item">
+            <div className='navbar-start'>
+              <Link
+                to='/dashboard'
+                className='navbar-item'
+                onClick={() => toggleNav()}
+              >
                 Dashboard
               </Link>
-              <Link to="/project" className="navbar-item">
+              <Link
+                to='/project'
+                className='navbar-item'
+                onClick={() => toggleNav()}
+              >
                 Projects
               </Link>
-              <Link to="/profile" className="navbar-item">
+              <Link
+                to='/profile'
+                className='navbar-item'
+                onClick={() => toggleNav()}
+              >
                 Profile
               </Link>
-              <Link to="/meetTheDevs" className="navbar-item">
+              <Link
+                to='/meetTheDevs'
+                className='navbar-item'
+                onClick={() => toggleNav()}
+              >
                 Meet the Devs
               </Link>
             </div>
@@ -57,10 +73,10 @@ function Header() {
         </nav>
 
         {/* Website Title */}
-        <div className="element header-container">
-          <div className="burger-placeholder"></div>
-          <h1 className="title">
-            <Link to="/dashboard" className="white-text">
+        <div className='element header-container'>
+          <div className='burger-placeholder'></div>
+          <h1 className='title'>
+            <Link to='/dashboard' className='white-text'>
               <FontAwesomeIcon icon={faChartGantt}></FontAwesomeIcon>
               &nbsp;OnTrack
             </Link>
@@ -68,27 +84,49 @@ function Header() {
 
           {/* Sign In dropdown */}
           <div className={`dropdown is-right ${isSignOpen ? 'is-active' : ''}`}>
-            <div className="dropdown-trigger">
+            <div className='dropdown-trigger'>
               <button
-                className="button navSign"
-                aria-haspopup="true"
-                aria-controls="dropdown-menu6"
+                className='button navSign'
+                aria-haspopup='true'
+                aria-controls='dropdown-menu6'
                 onClick={() => toggleSign()}
               >
                 <span>Sign In</span>
-                <span className="icon is-small">
-                  <i aria-hidden="true">
+                <span className='icon is-small'>
+                  <i aria-hidden='true'>
                     <FontAwesomeIcon icon={faAngleDown}></FontAwesomeIcon>
                   </i>
                 </span>
               </button>
             </div>
-            <div className="dropdown-menu" id="dropdown-menu6" role="menu">
-              <div className="dropdown-content">
-                <div className="dropdown-item">
-                  <input className="input" type="text" placeholder="email" />
-                  <input className="input" type="text" placeholder="password" />
-                  <button className="button"> Sign In </button>
+            <div className='dropdown-menu' id='dropdown-menu6' role='menu'>
+              <div className='dropdown-content'>
+                <div className='dropdown-item'>
+                  <form class=''>
+                    <div className='field'>
+                      <label className='label'>Email</label>
+                      <div className='control'>
+                        <input
+                          className='input'
+                          type='email'
+                          placeholder='e.g. alex@example.com'
+                        />
+                      </div>
+                    </div>
+
+                    <div className='field'>
+                      <label className='label'>Password</label>
+                      <div className='control'>
+                        <input
+                          className='input'
+                          type='password'
+                          placeholder='********'
+                        />
+                      </div>
+                    </div>
+                    {/* when global sass variables available, label button with classname for good button */}
+                    <button className='button '>Sign in</button>
+                  </form>
                 </div>
               </div>
             </div>

@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema } = require("mongoose");
 
 const issueSchema = new Schema(
   {
@@ -7,27 +7,27 @@ const issueSchema = new Schema(
       required: true,
     },
     title: {
-        type: String,
-        required: true,
-      },
-      description: {
-        type: String,
-        required: true,
-      },
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
     username: {
       type: String,
-      required: true
+      required: true,
     },
     duration: {
-        type: Number,
-        required: true,
-        default: 8,
-      },
+      type: Number,
+      required: true,
+      default: 8,
+    },
   },
   {
     toJSON: {
-      getters: true
-    }
+      getters: true,
+    },
   }
 );
 

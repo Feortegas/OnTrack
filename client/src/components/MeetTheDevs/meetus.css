@@ -1,10 +1,22 @@
-/*.img-container{
+.meet-us-title-containers{
+    text-align: center;
+}
+
+.meetus-title{
+    color: rgb(47, 140, 247);
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+
+.img-container{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    width: 100%;
-}*/
+    justify-content: center;
+}
 
 .profile-img{
     width: 500px;
+    margin: 5px;
+    margin-bottom: 20px;
 }

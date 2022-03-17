@@ -9,6 +9,12 @@ function Header() {
     setIsHamburgerOpen(!isHamburgerOpen);
   };
 
+  // const [isSignOpen, setIsSignOpen] = useState(false);
+
+  // const toggleSign = () => {
+  //   setIsSignOpen(!isSignOpen);
+  // };
+
   return (
     <header>
       <div>

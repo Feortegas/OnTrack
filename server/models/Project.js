@@ -1,5 +1,5 @@
-const { Schema, model } = require('mongoose');
-const issueSchema = require('./Issue');
+const { Schema, model } = require("mongoose");
+const issueSchema = require("./Issue");
 
 const projectSchema = new Schema(
   {
@@ -8,30 +8,30 @@ const projectSchema = new Schema(
       required: true,
     },
     projectTitle: {
-        type: String,
-        required: true,
-      },
-      projectURL: {
-        type: String,
-        required: true,
-      },
-      completionDate: {
-        type: Date,
-        required: true,
-      },
-    issues: [issueSchema]
+      type: String,
+      required: true,
+    },
+    projectURL: {
+      type: String,
+      required: true,
+    },
+    completionDate: {
+      type: Date,
+      required: true,
+    },
+    issues: [issueSchema],
   },
   {
     toJSON: {
-      getters: true
-    }
+      getters: true,
+    },
   }
 );
 
-projectSchema.virtual('issueCount').get(function() {
+projectSchema.virtual("issueCount").get(function () {
   return this.issues.length;
 });
 
-const Project = model('Project', projectSchema);
+const Project = model("Project", projectSchema);
 
 module.exports = Project;

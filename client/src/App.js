@@ -2,6 +2,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import './App.css';
 import './styles/css/style.css';
+import {
+	ApolloProvider,
+	ApolloClient,
+	InMemoryCache,
+	createHttpLink,
+} from '@apollo/client';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Landing from './components/Landing';
@@ -10,24 +16,35 @@ import Project from './components/Project';
 import Profile from './components/Profile';
 import MeetTheDevs from './components/MeetTheDevs';
 
+const httpLink = createHttpLink({
+	uri: 'http://localhost:3001/graphql',
+});
+
+const client = new ApolloClient({
+	link: httpLink,
+	cache: new InMemoryCache(),
+});
+
 function App() {
-  return (
-    <div>
-      <Router>
-        <main>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/project" element={<Project />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/meetTheDevs" element={<MeetTheDevs />} />
-          </Routes>
-        </main>
-        <Footer />
-      </Router>
-    </div>
-  );
+	return (
+		<ApolloProvider client={client}>
+			<div>
+				<Router>
+					<main>
+						<Header />
+						<Routes>
+							<Route path='/' element={<Landing />} />
+							<Route path='/dashboard' element={<Dashboard />} />
+							<Route path='/project' element={<Project />} />
+							<Route path='/profile' element={<Profile />} />
+							<Route path='/meetTheDevs' element={<MeetTheDevs />} />
+						</Routes>
+					</main>
+					<Footer />
+				</Router>
+			</div>
+		</ApolloProvider>
+	);
 }
 
 export default App;

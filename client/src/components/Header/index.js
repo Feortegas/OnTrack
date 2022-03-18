@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown, faChartGantt } from '@fortawesome/free-solid-svg-icons';
+import { faChartGantt } from '@fortawesome/free-solid-svg-icons';
 import './header.css';
+import Login from '../Login';
 
 function Header() {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
@@ -11,20 +12,16 @@ function Header() {
     setIsHamburgerOpen(!isHamburgerOpen);
   };
 
-  const [isSignOpen, setIsSignOpen] = useState(false);
-
-  const toggleSign = () => {
-    setIsSignOpen(!isSignOpen);
-  };
-
   return (
     <header className='background-color-secondary'>
       <div>
-        <nav className='navbar'>
+        <nav className='navbar outline primary'>
           {/* Hamburger menu */}
           <div
             role='button'
-            className={`navbar-burger ${isHamburgerOpen ? 'is-active' : ''}`}
+            className={`navbar-burger font${
+              isHamburgerOpen ? 'is-active' : ''
+            }`}
             aria-label='menu'
             aria-expanded='false'
             onClick={() => toggleNav()}
@@ -37,33 +34,35 @@ function Header() {
           {/* Menu content */}
           <div
             id='navMenu'
-            className={`navbar-menu ${isHamburgerOpen ? 'is-active' : ''}`}
+            className={`navbar-menu primary ${
+              isHamburgerOpen ? 'is-active' : ''
+            }`}
           >
-            <div className='navbar-start'>
+            <div className='navbar-start primary'>
               <Link
                 to='/dashboard'
-                className='navbar-item'
+                className='navbar-item font primary'
                 onClick={() => toggleNav()}
               >
                 Dashboard
               </Link>
               <Link
                 to='/project'
-                className='navbar-item'
+                className='navbar-item font primary'
                 onClick={() => toggleNav()}
               >
                 Projects
               </Link>
               <Link
                 to='/profile'
-                className='navbar-item'
+                className='navbar-item font primary'
                 onClick={() => toggleNav()}
               >
                 Profile
               </Link>
               <Link
                 to='/meetTheDevs'
-                className='navbar-item'
+                className='navbar-item font primary'
                 onClick={() => toggleNav()}
               >
                 Meet the Devs
@@ -81,56 +80,8 @@ function Header() {
               &nbsp;OnTrack
             </Link>
           </h1>
-
           {/* Sign In dropdown */}
-          <div className={`dropdown is-right ${isSignOpen ? 'is-active' : ''}`}>
-            <div className='dropdown-trigger'>
-              <button
-                className='button navSign'
-                aria-haspopup='true'
-                aria-controls='dropdown-menu6'
-                onClick={() => toggleSign()}
-              >
-                <span>Sign In</span>
-                <span className='icon is-small'>
-                  <i aria-hidden='true'>
-                    <FontAwesomeIcon icon={faAngleDown}></FontAwesomeIcon>
-                  </i>
-                </span>
-              </button>
-            </div>
-            <div className='dropdown-menu' id='dropdown-menu6' role='menu'>
-              <div className='dropdown-content'>
-                <div className='dropdown-item'>
-                  <form class=''>
-                    <div className='field'>
-                      <label className='label'>Email</label>
-                      <div className='control'>
-                        <input
-                          className='input'
-                          type='email'
-                          placeholder='e.g. alex@example.com'
-                        />
-                      </div>
-                    </div>
-
-                    <div className='field'>
-                      <label className='label'>Password</label>
-                      <div className='control'>
-                        <input
-                          className='input'
-                          type='password'
-                          placeholder='********'
-                        />
-                      </div>
-                    </div>
-                    {/* when global sass variables available, label button with classname for good button */}
-                    <button className='button '>Sign in</button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Login />
         </div>
       </div>
     </header>

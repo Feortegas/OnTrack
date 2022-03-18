@@ -5,6 +5,32 @@ header {
   border-bottom: 3px solid #000000;
 }
 
+.project-title {
+  color: rgb(47, 140, 247);
+}
+
+.secondary {
+  background-color: rgb(22, 27, 34);
+}
+
+.primary {
+  background-color: rgb(13, 17, 23);
+}
+
+.outline {
+  border-width: thin;
+  border-radius: 5px;
+  border-color: white;
+}
+
+.accent {
+  background-color: rgb(33, 38, 45);
+}
+
+.font {
+  color: rgb(201, 209, 217);
+}
+
 .title {
   margin-top: 20px;
   margin-left: 100px;

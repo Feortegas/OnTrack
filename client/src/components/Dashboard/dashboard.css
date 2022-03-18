@@ -42,3 +42,36 @@
 .list-item-text {
   margin-top: 30px;
 }
+
+.project-title {
+  color: rgb(47, 140, 247);
+}
+
+.center {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.secondary {
+  background-color: rgb(22, 27, 34);
+}
+
+.primary {
+  background-color: rgb(13, 17, 23);
+}
+
+.accent {
+  background-color: rgb(33, 38, 45);
+}
+
+.font {
+  color: rgb(201, 209, 217);
+}
+
+a:hover,
+a:visited,
+a:link,
+a:active {
+  text-decoration: none;
+}

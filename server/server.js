@@ -20,7 +20,7 @@ app.use(express.json());
 // });
 
 db.once('open', () => {
-	app.listen(PORT, () => {
-		console.log(`API server running on port ${PORT}!`);
-	});
+  app.listen(PORT, () => {
+    console.log(`API server running on port ${PORT}!`);
+  });
 });

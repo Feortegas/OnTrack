@@ -15,7 +15,7 @@ module.exports = {
 
     // separate "Bearer" from "<tokenvalue>"
     if (req.headers.authorization) {
-      token = token.split(' ').pop().trim();
+      token = token.split(' ')[1];
     }
 
     // if no token, return request object as is

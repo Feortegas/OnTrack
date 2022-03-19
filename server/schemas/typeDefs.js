@@ -13,6 +13,7 @@ const typeDefs = gql`
     projectID: String
     projectTitle: String
     projectURL: String
+    username: String
     completionDate: String
     issueCount: Int
     issues: [Issue]
@@ -45,6 +46,7 @@ const typeDefs = gql`
       projectID: String!,
       projectTitle: String!,
       projectURL: String!,
+      username: String!,
       completionDate: String
     ): Project
     addIssue(

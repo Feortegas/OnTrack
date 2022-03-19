@@ -52,9 +52,9 @@ const resolvers = {
           username: context.user.username,
         });
 
-        await User.findByIdAndUpdate(
+        await Project.findOneAndDelete(
           { _id: context.user._id },
-          { $push: { projects: project._id } },
+          { $addToSet: { projects: project._id } },
           { new: true }
         );
 

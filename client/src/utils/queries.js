@@ -7,6 +7,7 @@ export const QUERY_PROJECTS = gql`
 			projectID
 			projectTitle
 			projectURL
+			username
 			completionDate
 			issueCount
 		}
@@ -19,16 +20,11 @@ export const QUERY_USER = gql`
 			_id
 			username
 			email
-			friendCount
-			friends {
+			projects {
 				_id
+				projectTitle
+projectURL
 				username
-			}
-			thoughts {
-				_id
-				thoughtText
-				createdAt
-				reactionCount
 			}
 		}
 	}

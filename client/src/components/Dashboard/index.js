@@ -10,16 +10,16 @@ function Dashboard() {
     },
   ];
 
-  const actual =
+  const projected =
     progressValues.hours - progressValues.capacity * progressValues.days;
 
-  const projected = progressValues.hours / progressValues.days;
+  const remaining = progressValues.hours / progressValues.days;
 
   function onTrack() {
-    if (actual <= projected) {
-      return 'OnTrack';
-    } else {
+    if (remaining <= projected) {
       return 'Behind';
+    } else {
+      return 'OnTrack';
     }
   }
 
@@ -40,35 +40,27 @@ function Dashboard() {
             <div className='  has-text-centered has-text-weight-semibold'>
               <div className='calendar accent '>
                 <br />
-                <div className=' font'>{progressValues.days}</div>
+                <div className='is-size-4 has-text-centered font has-text-weight-semibold'>
+                  {progressValues.days}
+                </div>
                 <br />
               </div>
             </div>
           </div>
           <div>
             <div className='has-text-centered has-text-weight-semibold is-size-4 project-title'>
-              Your project is {onTrack()}
+              <p>Your project is </p>{' '}
+              <p className={`${onTrack ? 'success' : 'warning'}`}>
+                {onTrack()}
+              </p>
             </div>
             <br />
             <div className='has-text-centered has-text-weight-semibold is-size-6 font'>
-              Projected Progress = Total Number of Issue Hours - (Total Team
-              Capacity * Days Remaining <br />
-              Actual Progress = Total Number of Issue Hours / Days Remaining)
+              Projected Output = Total Number of Issue Hours - (Total Team
+              Capacity * Days Remaining) <br />
+              Remaining Work = Total Number of Issue Hours / Days Remaining
               <br />
               <br />
-              <strong>
-                this section will not be in the final product
-                <br />
-                {projected} = {progressValues.hours} - (
-                {progressValues.capacity} * {progressValues.days})
-                <br />
-                {actual} = {progressValues.hours} /{progressValues.days}
-                <br />
-                <br />
-                if Actual &lt; Projected then OnTrack
-                <br />
-                if Actual &gt; Projected then Behind{' '}
-              </strong>
             </div>
           </div>
 

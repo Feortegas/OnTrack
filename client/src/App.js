@@ -7,7 +7,8 @@ import Footer from './components/Footer';
 import Landing from './components/Landing';
 import Dashboard from './components/Dashboard';
 import Project from './components/Project';
-import Profile from './components/Profile';
+import Team from './components/Team';
+import Issues from './components/Issues';
 import MeetTheDevs from './components/MeetTheDevs';
 
 function App() {
@@ -17,11 +18,12 @@ function App() {
         <main>
           <Header />
           <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/project" element={<Project />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/meetTheDevs" element={<MeetTheDevs />} />
+            <Route path='/' element={<Landing />} />
+            <Route path='/dashboard' element={<Dashboard />} />
+            <Route path='/project' element={<Project />} />
+            <Route path='/team' element={<Team />} />
+            <Route path='/issues' element={<Issues />} />
+            <Route path='/meetTheDevs' element={<MeetTheDevs />} />
           </Routes>
         </main>
         <Footer />

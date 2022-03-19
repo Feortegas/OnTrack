@@ -1,8 +1,8 @@
 .calendar {
-  margin-left: 40%;
-  margin-right: 40%;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  margin-left: 30%;
+  margin-right: 30%;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
 .dashboard-title {
@@ -11,8 +11,8 @@
 }
 
 .top {
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }
 
 .project-title {
@@ -33,6 +33,14 @@
 
 .font {
   color: var(--text);
+}
+
+.success {
+  color: var(--success);
+}
+
+.warning {
+  color: var(--warning);
 }
 
 a:hover,

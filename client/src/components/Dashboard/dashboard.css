@@ -5,29 +5,34 @@
   border-bottom-right-radius: 15px;
 }
 
+.dashboard-title {
+  font-size: 30px;
+  color: var(--link);
+}
+
 .top {
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
 }
 
 .project-title {
-  color: rgb(47, 140, 247);
+  color: var(--link);
 }
 
 .secondary {
-  background-color: rgb(22, 27, 34);
+  background-color: var(--header);
 }
 
 .primary {
-  background-color: rgb(13, 17, 23);
+  background-color: var(--background);
 }
 
 .accent {
-  background-color: rgb(33, 38, 45);
+  background-color: var(--accent);
 }
 
 .font {
-  color: rgb(201, 209, 217);
+  color: var(--text);
 }
 
 a:hover,

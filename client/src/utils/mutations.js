@@ -29,16 +29,19 @@ export const ADD_PROJECT = gql`
 		$projectID: String!
 		$projectTitle: String!
 		$projectUrl: String!
+		$username: String!
 	) {
 		addProject(
 			projectID: $projectID
 			projectTitle: $projectTitle
 			projectURL: $projectUrl
+			username: $username
 		) {
 			_id
 			projectID
 			projectTitle
 			projectURL
+			username
 			completionDate
 		}
 	}

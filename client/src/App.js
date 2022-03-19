@@ -7,9 +7,9 @@ import Footer from './components/Footer';
 import Landing from './components/Landing';
 import Dashboard from './components/Dashboard';
 import Project from './components/Project';
+import MeetTheDevs from './components/MeetTheDevs';
 import Team from './components/Team';
 import Issues from './components/Issues';
-import MeetTheDevs from './components/MeetTheDevs';
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
             <Route path='/project' element={<Project />} />
             <Route path='/team' element={<Team />} />
             <Route path='/issues' element={<Issues />} />
-            <Route path='/meetTheDevs' element={<MeetTheDevs />} />
+            <Route path='meetTheDevs' element={<MeetTheDevs />} />
           </Routes>
         </main>
         <Footer />

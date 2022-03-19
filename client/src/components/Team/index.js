@@ -1,17 +1,15 @@
 import React from 'react';
+import './team.css';
 
 function Team() {
-  return (
+  return(
     <>
-      <section>
-        {/* remove placeholder once real development on component begins */}
-
-        <div className='section '>
-          <h1 className='title'>Team</h1>
-        </div>
-      </section>
+    <section>
+      <h2 className="team-title">Team</h2>
+    </section>
     </>
   );
 }
 
 export default Team;
+

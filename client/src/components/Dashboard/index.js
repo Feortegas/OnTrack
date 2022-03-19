@@ -39,7 +39,7 @@ function Dashboard() {
 				<div className='container'>
 					<div className='section'>
 						<h2 className='has-text-centered has-text-weight-semibold is-size-3 project-title'>
-            {projects[1].username} / {projects[1].projectTitle}
+							{projects[1].username} / {projects[1].projectTitle}
 						</h2>
 					</div>
 

@@ -58,7 +58,7 @@ const resolvers = {
           { new: true }
         );
 
-        return thought;
+        return project;
       }
 
       throw new AuthenticationError('You need to be logged in!');

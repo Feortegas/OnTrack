@@ -11,6 +11,7 @@ const typeDefs = gql`
   type Project {
     _id: ID
     projectID: String
+    projectTitle: String
     projectURL: String
     completionDate: String
     issueCount: Int
@@ -41,15 +42,16 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addProject(
-      projectID: String!
-      projectTitle: String!
-      projectURL: String!
+      projectID: String!,
+      projectTitle: String!,
+      projectURL: String!,
+      completionDate: String
     ): Project
     addIssue(
-      projectId: ID!
-      issueID: Int!
-      title: String!
-      description: String!
+      projectId: ID!,
+      issueID: Int!,
+      title: String!,
+      description: String!,
       duration: Int!
     ): Issue
   }

@@ -54,10 +54,10 @@ function Login() {
                     />
                   </div>
                 </div>
-                <button className='button primary'>
+                <button className='signin-button button primary'>
                   <Link
                     to='/dashboard'
-                    className='font'
+                    className='signin-button-text font'
                     // onClick={() => submit()}
                   >
                     Sign In

@@ -3,7 +3,7 @@
 }
 
 .meetus-title{
-    color: rgb(47, 140, 247);
+    color: var(--text);
     font-size: 30px;
     margin-bottom: 15px;
 }

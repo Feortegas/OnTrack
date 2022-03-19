@@ -17,6 +17,7 @@ function Login() {
 	const [formState, setFormState] = useState({ email: '', password: '' });
 	const [login, { error }] = useMutation(LOGIN_USER);
 
+<<<<<<< HEAD
 	// update state based on form input changes
 	const handleChange = (event) => {
 		const { name, value } = event.target;
@@ -115,6 +116,34 @@ function Login() {
 			</div>
 		</>
 	);
+=======
+                <div className='field'>
+                  <label className='label font'>Password</label>
+                  <div className='control'>
+                    <input
+                      className='input primary font'
+                      type='password'
+                      placeholder='********'
+                    />
+                  </div>
+                </div>
+                <button className='signin-button button primary'>
+                  <Link
+                    to='/dashboard'
+                    className='signin-button-text font'
+                    // onClick={() => submit()}
+                  >
+                    Sign In
+                  </Link>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+>>>>>>> f6044d7f278118462c90bc656066772454a41138
 }
 
 export default Login;

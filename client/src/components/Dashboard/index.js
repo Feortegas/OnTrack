@@ -72,7 +72,7 @@ function Dashboard() {
             </div>
           </div>
 
-          <div className=' section '>
+          <div className=' mb-6 section '>
             <div className=' table columns box is-justify-content-center secondary '>
               <div className='column accent'>
                 <p className='project-title has-text-weight-semibold'>

@@ -1,3 +1,9 @@
+.container-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .meet-us-title-containers{
     text-align: center;
 }
@@ -9,8 +15,7 @@
 }
 
 .profile-pic-container{
-    background-color: var(--background);
-    border: 2px solid var(--text);
+    background-color: var(--accent);
     border-radius: 10px;
 }
 
@@ -18,14 +23,16 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background-color: var(--accent);
+    background-color: var(--header);
     border-radius: 10px;
+    width: 73%;
 }
 
 .profile-img{
     width: 500px;
     margin: 5px;
     margin-bottom: 20px;
+    border-radius: 10px;
 }
 
 .roles{

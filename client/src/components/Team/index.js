@@ -61,7 +61,7 @@ function Team() {
                 {users.map((team) => (
                   <li className='column container '>
                     <div className='card primary'>
-                      <h3 className='secondary has-text-centered font top is-size-5'>
+                      <h3 className='secondary has-text-centered font top is-size-5 has-text-weight-semibold'>
                         {team.user}
                       </h3>
                       <div className='card-image secondary'>
@@ -78,6 +78,9 @@ function Team() {
 
                       <div className='field has-addons'>
                         <div className='control is-expanded'>
+                          <p className='is-size-5  has-text-centered font accent '>
+                            Hours per day &nbsp;
+                          </p>
                           <div className='select is-fullwidth'>
                             <select name='capacity'>
                               <option value={`${team.capacity}`}>
@@ -98,16 +101,16 @@ function Team() {
                             </select>
                           </div>
                         </div>
-                        <div className='control'>
-                          <button type='submit' className='button is-info'>
-                            Set Hours
-                          </button>
-                        </div>
                       </div>
                     </div>
                   </li>
                 ))}
               </ul>
+              <div className='section'>
+                <button type='submit' className='button accent font'>
+                  Update Team Capacity
+                </button>
+              </div>
             </div>
           </div>
         </div>

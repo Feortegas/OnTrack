@@ -40,7 +40,9 @@ function Dashboard() {
             <div className='  has-text-centered has-text-weight-semibold'>
               <div className='calendar accent '>
                 <br />
-                <div className=' font'>{progressValues.days}</div>
+                <div className='is-size-4 has-text-centered font has-text-weight-semibold'>
+                  {progressValues.days}
+                </div>
                 <br />
               </div>
             </div>

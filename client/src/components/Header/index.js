@@ -54,18 +54,18 @@ function Header() {
                 Projects
               </Link>
               <Link
-                to='/profile'
+                to='/team'
                 className='navbar-item font primary'
                 onClick={() => toggleNav()}
               >
-                Profile
+                Team
               </Link>
               <Link
-                to='/meetTheDevs'
+                to='/issues'
                 className='navbar-item font primary'
                 onClick={() => toggleNav()}
               >
-                Meet the Devs
+                Issues
               </Link>
             </div>
           </div>

@@ -1,9 +1,8 @@
-.dashboard-container {
-  text-align: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  flex-direction: column;
+.calendar {
+  margin-left: 40%;
+  margin-right: 40%;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 .dashboard-title {
@@ -11,46 +10,13 @@
   color: var(--link);
 }
 
-.issues-info-container {
-  border: 3px solid #000000;
-  border-radius: 10px;
-  min-height: 60vh;
-  margin-bottom: 80px;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: -20px;
-}
-
-.issues-list-container {
-  margin-top: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.issue-list-item {
-  border: 3px solid #000000;
-  padding: 5px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  height: 100px;
-  margin-right: 10px;
-  margin-left: 10px;
-  border-radius: 10px;
-}
-
-.list-item-text {
-  margin-top: 30px;
+.top {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
 
 .project-title {
   color: var(--link);
-}
-
-.center {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
 .secondary {

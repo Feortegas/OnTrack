@@ -9,7 +9,6 @@ export const QUERY_PROJECTS = gql`
 			projectURL
 			username
 			completionDate
-			issueCount
 		}
 	}
 `;
@@ -36,21 +35,12 @@ export const QUERY_ME = gql`
 			_id
 			username
 			email
-			friendCount
-			thoughts {
+			projectID
+			projects {
 				_id
-				thoughtText
-				createdAt
-				reactionCount
-				reactions {
-					_id
-					createdAt
-					reactionBody
-					username
-				}
-			}
-			friends {
-				_id
+				projectID
+				projectTitle
+				projectURL
 				username
 			}
 		}
@@ -63,9 +53,9 @@ export const QUERY_ME_BASIC = gql`
 			_id
 			username
 			email
-			friendCount
-			friends {
+			projects {
 				_id
+				projectTitle
 				username
 			}
 		}

@@ -42,7 +42,14 @@ export const ADD_PROJECT = gql`
 			projectTitle
 			projectURL
 			username
-			completionDate
+		}
+	}
+`;
+
+export const DELETE_PROJECT = gql`
+	mutation deleteProject($id: String!) {
+		deleteProject(_id: $id) {
+			_id
 		}
 	}
 `;

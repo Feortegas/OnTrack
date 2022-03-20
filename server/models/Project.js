@@ -5,19 +5,19 @@ const projectSchema = new Schema(
 	{
 		projectID: {
 			type: String,
-			required: true,
+			required: false,
 		},
 		projectTitle: {
 			type: String,
-			required: true,
+			required: false,
 		},
 		projectURL: {
 			type: String,
-			required: true,
+			required: false,
 		},
 		username: {
 			type: String,
-			required: true,
+			required: false,
 		},
 		completionDate: {
 			type: Date,

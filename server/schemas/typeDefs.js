@@ -49,6 +49,8 @@ const typeDefs = gql`
       username: String!,
       completionDate: String
     ): Project
+    deleteProject(_id: ID!): Project
+    updateProject(_id: String!): Project
     addIssue(
       projectId: ID!,
       issueID: Int!,

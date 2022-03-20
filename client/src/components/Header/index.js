@@ -13,56 +13,56 @@ function Header() {
   };
 
   return (
-    <header className='background-color-secondary'>
+    <header className="background-color-secondary">
       <div>
-        <nav className='navbar outline primary'>
+        <nav className="navbar outline primary">
           {/* Hamburger menu */}
           <div
-            role='button'
+            role="button"
             className={`navbar-burger font${
               isHamburgerOpen ? 'is-active' : ''
             }`}
-            aria-label='menu'
-            aria-expanded='false'
+            aria-label="menu"
+            aria-expanded="false"
             onClick={() => toggleNav()}
           >
-            <span aria-hidden='true'></span>
-            <span aria-hidden='true'></span>
-            <span aria-hidden='true'></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
           </div>
 
           {/* Menu content */}
           <div
-            id='navMenu'
+            id="navMenu"
             className={`navbar-menu primary ${
               isHamburgerOpen ? 'is-active' : ''
             }`}
           >
-            <div className='navbar-start primary'>
+            <div className="navbar-start primary">
               <Link
-                to='/dashboard'
-                className='navbar-item font primary'
+                to="/dashboard"
+                className="navbar-item font primary"
                 onClick={() => toggleNav()}
               >
                 Dashboard
               </Link>
               <Link
-                to='/project'
-                className='navbar-item font primary'
+                to="/project"
+                className="navbar-item font primary"
                 onClick={() => toggleNav()}
               >
                 Projects
               </Link>
               <Link
-                to='/team'
-                className='navbar-item font primary'
+                to="/team"
+                className="navbar-item font primary"
                 onClick={() => toggleNav()}
               >
                 Team
               </Link>
               <Link
-                to='/issues'
-                className='navbar-item font primary'
+                to="/issues"
+                className="navbar-item font primary"
                 onClick={() => toggleNav()}
               >
                 Issues
@@ -72,10 +72,10 @@ function Header() {
         </nav>
 
         {/* Website Title */}
-        <div className='element header-container'>
-          <div className='burger-placeholder'></div>
-          <h1 className='title'>
-            <Link to='/dashboard' className='white-text'>
+        <div className="element header-container">
+          <div className="burger-placeholder"></div>
+          <h1 className="title">
+            <Link to="/dashboard" className="white-text">
               <FontAwesomeIcon icon={faChartGantt}></FontAwesomeIcon>
               &nbsp;OnTrack
             </Link>

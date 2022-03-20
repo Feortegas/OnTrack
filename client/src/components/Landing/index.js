@@ -101,7 +101,7 @@ function Landing() {
                     />
                   </div>
                 </div>
-                <form className="" />
+                {/* <form className='' /> */}
                 <div className="field">
                   <label className="label font ">Email</label>
                   <div className="control">
@@ -116,7 +116,7 @@ function Landing() {
                     />
                   </div>
                 </div>
-                <form className="" />
+                {/* <form className='' /> */}
                 <div className="field">
                   <label className="label font">Password</label>
                   <div className="control">

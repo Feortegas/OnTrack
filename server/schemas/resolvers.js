@@ -46,27 +46,32 @@ const resolvers = {
 			return { token, user };
 		},
 		addProject: async (parent, args, context) => {
-			if (context.user) {
-				const project = await Project.create({
-					...args,
-					username: context.user.username,
-				});
+			// if (context.user) {
+			// 	const project = await Project.create({
+			// 		...args,
+			// 		username: context.user.username,
+			// 	});
 
-				await Project.findOneAndUpdate(
-					{ _id: context.user._id },
-					{ $addToSet: { projects: project._id } },
-					{ new: true }
-				);
+			await Project.findOneAndUpdate(
+				{ _id: context.user._id },
+				{ $addToSet: { projects: project._id } },
+				{ new: true }
+			);
 
-				return project;
-			}
+			return project;
+			// }
 
-			throw new AuthenticationError('You need to be logged in!');
+			// throw new AuthenticationError('You need to be logged in!');
 		},
 		// delete a single project by ID
 		deleteProject: async (parent, { _id }) => {
 			const project = await Project.deleteOne({ _id: _id }, { new: true });
 			return { project };
+		},
+		// delete a single user by ID
+		deleteUser: async (parent, { _id }) => {
+			const user = await User.deleteOne({ _id: _id }, { new: true });
+			return { user };
 		},
 
 		addIssue: async (parent, { projectId, issueID, title }, context) => {

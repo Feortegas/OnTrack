@@ -17,6 +17,8 @@ import MeetTheDevs from './components/MeetTheDevs';
 import Team from './components/Team';
 import Issues from './components/Issues';
 
+import PrivateRoute from './components/Routing/PrivateRoute';
+
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
 });
@@ -34,12 +36,20 @@ function App() {
           <main>
             <Header />
             <Routes>
-              <Route path="/" element={<Landing />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/project" element={<Project />} />
-              <Route path="/team" element={<Team />} />
-              <Route path="/issues" element={<Issues />} />
-              <Route path="/meetTheDevs" element={<MeetTheDevs />} />
+              <Route path='/' element={<Landing />} />
+              <Route exact path='/dashboard' element={<PrivateRoute />}>
+                <Route exact path='/dashboard' element={<Dashboard />} />
+              </Route>
+              <Route exact path='/project' element={<PrivateRoute />}>
+                <Route exact path='/project' element={<Project />} />
+              </Route>
+              <Route exact path='/team' element={<PrivateRoute />}>
+                <Route exact path='/team' element={<Team />} />
+              </Route>
+              <Route exact path='/issues' element={<PrivateRoute />}>
+                <Route exact path='/issues' element={<Issues />} />
+              </Route>
+              <Route path='/meetTheDevs' element={<MeetTheDevs />} />
             </Routes>
           </main>
           <Footer />

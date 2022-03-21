@@ -20,7 +20,7 @@ const projectSchema = new Schema(
 			required: false,
 		},
 		completionDate: {
-			type: Date,
+			type: String,
 			required: false,
 			default: '03/23/2022',
 		},

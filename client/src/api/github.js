@@ -1,60 +1,62 @@
 const fetch = require('node-fetch');
-const userName = 'feortegas';
-const repoName = 'OnTrack';
 
 // fetch user repos from the api url
-const getRepos = (user) => {
+const getRepos = async (user) => {
 	// format the github api url
 	const apiUrl = `https://api.github.com/users/${user}/repos`;
 	const repoArr = [];
 
-	// make a request to the url
-	fetch(apiUrl)
-		.then((res) => res.json())
-		.then((data) => {
-			// return array of repos
-			for (let index = 0; index < data.length; index++) {
-				repoArr.push(data[index].name);
-			}
-			return repoArr;
-		});
+	try {
+		// make a request to the url
+		const res = await fetch(apiUrl);
+		const data = await res.json();
+		// return array of repos
+		for (let index = 0; index < data.length; index++) {
+			repoArr.push(data[index].name);
+		}
+		return repoArr;
+	} catch (err) {
+		console.error(err);
+	}
 };
 
-// https://api.github.com/repos/feortegas/OnTrack
-// fetch user repos from the api url
-const getRepo = (user, repo) => {
+// fetch single user repo from the api url
+const getRepo = async (user, repo, targetDate) => {
 	// format the github api url
-	const apiUrl = `https://api.github.com/repos/${user}/${repo}`;
-	let repoObj = {};
-
-	// make a request to the url
-	fetch(apiUrl)
-		.then((res) => res.json())
-		.then((data) => {
-			repoObj = {
-				projectID: data.id,
-				projectTitle: data.name,
-				projectURL: data.html_url,
-				username: data.owner.login,
-				// open_issues: data.open_issues_count,
-				// description: data.description,
-			};
-			console.log(repoObj);
-			return repoObj;
-		});
+	try {
+		const apiUrl = `https://api.github.com/repos/${user}/${repo}`;
+		let repoObj = {};
+		const res = await fetch(apiUrl);
+		const data = await res.json();
+		repoObj = {
+			projectID: data.id,
+			projectTitle: data.name,
+			projectURL: data.html_url,
+			username: data.owner.login,
+			completionDate: targetDate,
+		};
+		return repoObj;
+	} catch (err) {
+		console.error(err);
+	}
 };
 
 // fetch user repos from the api url
-const getUser = (user) => {
-	// format the github api url
-	const apiUrl = `https://api.github.com/users/${user}`;
-
-	// make a request to the url
-	fetch(apiUrl)
-		.then((res) => res.json())
-		.then((data) => {
-			// return user data object
-		});
+const getUser = async (user) => {
+	try {
+		const apiUrl = `https://api.github.com/users/${user}`;
+		let userObj = {};
+		const res = await fetch(apiUrl);
+		const data = await res.json();
+		// return user data object
+		userObj = {
+			username: data.login,
+			profileImgURL: data.avatar_url,
+		};
+		return userObj;
+	} catch (err) {
+		console.error(err);
+	}
 };
 
 // fetch repository issues from the api url

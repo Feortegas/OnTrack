@@ -2,37 +2,41 @@ import React, { useState } from 'react';
 import './projectmodal.css';
 import { useMutation } from '@apollo/client';
 import { ADD_PROJECT } from '../../utils/mutations';
-import { QUERY_PROJECTS, QUERY_ME } from '../../utils/queries';
-import { getRepo, getRepos } from '../../api/github';
+// import { QUERY_PROJECTS, QUERY_ME } from '../../utils/queries';
+// import { getRepo, getRepos } from '../../api/github';
 // getRepos returns an Array of Repos.name from the API
 // use it to build the dropdown list dynamically
 
 const ProjectModal = ({ onClose }) => {
 	const [username, setUsername] = useState('');
 	const [repoName, setRepoName] = useState('');
+	// const [targetDate, setTargetDate] = useState('');
 	// save project to Database
-	const [addProject, { error }] = useMutation(ADD_PROJECT, {
-		update(cache, { data: { addProject } }) {
-			try {
-				// update project array's cache
-				// could potentially not exist yet, so wrap in a try/catch
-				const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
-				cache.writeQuery({
-					query: QUERY_PROJECTS,
-					data: { projects: [addProject, ...projects] },
-				});
-			} catch (e) {
-				console.error(e);
-			}
 
-			// update me object's cache
-			const { me } = cache.readQuery({ query: QUERY_ME });
-			cache.writeQuery({
-				query: QUERY_ME,
-				data: { me: { ...me, projects: [...me.projects, addProject] } },
-			});
-		},
-	});
+	const [addProject] = useMutation(ADD_PROJECT);
+
+	// const [addProject, { error }] = useMutation(ADD_PROJECT, {
+	// 	update(cache, { data: { addProject } }) {
+	// 		try {
+	// 			// update project array's cache
+	// 			// could potentially not exist yet, so wrap in a try/catch
+	// 			const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
+	// 			cache.writeQuery({
+	// 				query: QUERY_PROJECTS,
+	// 				data: { projects: [addProject, ...projects] },
+	// 			});
+	// 		} catch (e) {
+	// 			console.error(e);
+	// 		}
+
+	// 		// update me object's cache
+	// 		// const { me } = cache.readQuery({ query: QUERY_ME });
+	// 		// cache.writeQuery({
+	// 		// 	query: QUERY_ME,
+	// 		// 	data: { me: { ...me, projects: [...me.projects, addProject] } },
+	// 		// });
+	// 	},
+	// });
 
 	// update state based on form input changes
 	const handleChangeUser = (event) => {
@@ -46,19 +50,45 @@ const ProjectModal = ({ onClose }) => {
 		setRepoName(event.target.value);
 	};
 
+	// const handleChangeDate = (event) => {
+	// 	setTargetDate(event.targe.value);
+	// };
+
 	// submit form
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
-		console.log(username, repoName);
-		const theProject = await getRepo(username, repoName);
+		// const targetDate = '03/23/2022';
+		// console.log(username, repoName, targetDate);
+		// const theProject = await getRepo(username, repoName, targetDate);
+		const theProject = {
+			projectID: '469475772',
+			projectTitle: 'OnTrack',
+			projectUrl: 'https://github.com/Feortegas/OnTrack',
+			username: 'Feortegas',
+			completionDate: '03/23/2022',
+		};
+
+		const projectID = theProject.projectID;
+		const projectTitle = theProject.projectTitle;
+		const projectURL = theProject.projectUrl;
+		const username = theProject.username;
+		const completionDate = theProject.completionDate;
+
 		try {
 			await addProject({
-				variables: { theProject },
+				variables: {
+					projectID,
+					projectTitle,
+					projectURL,
+					username,
+					completionDate,
+				},
 			});
 
 			// clear form value
 			setUsername('');
 			setRepoName('');
+			// setTargetDate('');
 		} catch (e) {
 			console.error(e);
 		}
@@ -99,7 +129,11 @@ const ProjectModal = ({ onClose }) => {
 							</div>
 							<div className='section font'>
 								<label className='label font'>Target Date</label>
-								<input type='date' />
+								<input
+									type='date'
+									// value={targetDate}
+									// onChange={handleChangeDate}
+								/>
 							</div>
 							<div className='section font'>
 								<button

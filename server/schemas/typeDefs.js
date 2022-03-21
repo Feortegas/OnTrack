@@ -5,6 +5,7 @@ const typeDefs = gql`
     _id: ID
     username: String
     email: String
+    profileImgURL: String
     projects: [Project]
   }
 
@@ -41,7 +42,8 @@ const typeDefs = gql`
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!, profileImgURL: String): Auth
+    deleteUser(_id: ID!): User
     addProject(
       projectID: String!,
       projectTitle: String!,

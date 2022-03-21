@@ -5,6 +5,11 @@ header {
   border-bottom: 3px solid #000000;
 }
 
+.navbar-burger{
+  border: 2px solid #fff;
+  border-radius: 5px;
+}
+
 .project-title {
   color: var(--link);
 }
@@ -66,4 +71,8 @@ a:visited,
 a:link,
 a:active {
   text-decoration: none;
+}
+
+.navbar-item:hover{
+  color: var(--text);
 }

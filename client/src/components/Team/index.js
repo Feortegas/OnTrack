@@ -54,9 +54,13 @@ function Team() {
               </p>
             </div>
           </div>
-
+          <div className='section update-button'>
+                <button type='submit' className='button accent font'>
+                  Update Team Capacity
+                </button>
+              </div>
           <div className='section'>
-            <div>
+            <div className=' contributer-container '>
               <ul className=' columns '>
                 {users.map((team) => (
                   <li className='column container '>
@@ -106,11 +110,6 @@ function Team() {
                   </li>
                 ))}
               </ul>
-              <div className='section'>
-                <button type='submit' className='button accent font'>
-                  Update Team Capacity
-                </button>
-              </div>
             </div>
           </div>
         </div>

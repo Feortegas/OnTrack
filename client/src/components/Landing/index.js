@@ -40,41 +40,41 @@ function Landing() {
 
   return (
     <>
-      <section className='hero'>
-        <div className='hero-body'>
-          <p className='has-text-centered has-text-weight-semibold is-size-3 project-title'>
+      <section className="hero">
+        <div className="hero-body">
+          <p className="has-text-centered has-text-weight-semibold is-size-3 project-title">
             Get OnTrack with Github Issue Tracking
           </p>
           <br />
-          <div className='box secondary'>
-            <div className='columns is-mobile'>
+          <div className="box secondary">
+            <div className="columns is-mobile">
               <progress
-                className='progress is-large is-info column is-one-third'
-                max='100'
+                className="progress is-large is-info column is-one-third"
+                max="100"
               />
-              <div className='column ' />
+              <div className="column " />
             </div>
-            <div className='columns is-mobile'>
-              <div className='column' />
+            <div className="columns is-mobile">
+              <div className="column" />
               <progress
-                className='progress is-large is-info column is-three-fifths'
-                max='100'
+                className="progress is-large is-info column is-three-fifths"
+                max="100"
               />
-              <div className='column' />
+              <div className="column" />
             </div>
-            <div className='columns is-mobile'>
-              <div className='column' />
+            <div className="columns is-mobile">
+              <div className="column" />
               <progress
-                className='progress is-large is-info column is-one-third'
-                max='100'
+                className="progress is-large is-info column is-one-third"
+                max="100"
               />
             </div>
           </div>
         </div>
-        <div className='section'>
-          <div className='box columns accent font'>
-            <div className='column'>
-              <p className='has-text-centered has-text-weight-semibold'>
+        <div className="section">
+          <div className="box columns accent font">
+            <div className="column">
+              <p className="has-text-centered has-text-weight-semibold">
                 With OnTrack you can add time tracking to your Github issues.{' '}
                 <br />
                 <br /> Our application uses the Github API to gather all of your
@@ -85,56 +85,56 @@ function Landing() {
                 Sign up today and let's get you OnTrack!
               </p>
             </div>
-            <div className='column '>
-              <form className='' onSubmit={handleFormSubmit}>
-                <div className='field'>
-                  <label className='label font'>Github Username</label>
-                  <div className='control'>
+            <div className="column ">
+              <form className="" onSubmit={handleFormSubmit}>
+                <div className="field">
+                  <label className="label font">Github Username</label>
+                  <div className="control">
                     <input
-                      className='input primary font'
-                      placeholder='Your username'
-                      name='username'
-                      type='username'
-                      id='username'
+                      className="input primary font"
+                      placeholder="Your username"
+                      name="username"
+                      type="username"
+                      id="username"
                       value={formState.username}
                       onChange={handleChange}
                     />
                   </div>
                 </div>
                 {/* <form className='' /> */}
-                <div className='field'>
-                  <label className='label font '>Email</label>
-                  <div className='control'>
+                <div className="field">
+                  <label className="label font ">Email</label>
+                  <div className="control">
                     <input
-                      className='input primary font'
-                      placeholder='Your email'
-                      name='email'
-                      type='email'
-                      id='email'
+                      className="input primary font"
+                      placeholder="Your email"
+                      name="email"
+                      type="email"
+                      id="email"
                       value={formState.email}
                       onChange={handleChange}
                     />
                   </div>
                 </div>
                 {/* <form className='' /> */}
-                <div className='field'>
-                  <label className='label font'>Password</label>
-                  <div className='control'>
+                <div className="field">
+                  <label className="label font">Password</label>
+                  <div className="control">
                     <input
-                      className='input primary font'
-                      placeholder='******'
-                      name='password'
-                      type='password'
-                      id='password'
+                      className="input primary font"
+                      placeholder="******"
+                      name="password"
+                      type="password"
+                      id="password"
                       value={formState.password}
                       onChange={handleChange}
                     />
                   </div>
                 </div>
-                <button className='button primary' type='submit'>
+                <button className="button primary" type="submit">
                   <Link
-                    to='/project'
-                    className='font'
+                    to="/project"
+                    className="font"
                     // onClick={() => submit()}
                   >
                     Sign me up!
@@ -145,7 +145,7 @@ function Landing() {
             </div>
           </div>
         </div>
-        <div className='section' />
+        <div className="section" />
       </section>
     </>
   );

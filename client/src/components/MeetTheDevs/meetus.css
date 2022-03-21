@@ -38,3 +38,12 @@
 .roles{
     color: var(--text)
 }
+
+.portfolio-link{
+    color: #fff;
+}
+
+.portfolio-link:hover{
+    color: #fff;
+    text-decoration: underline;
+}

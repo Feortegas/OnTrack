@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import './login.css';
@@ -9,7 +9,6 @@ import Auth from '../../utils/auth';
 
 function Login() {
   const [isSignOpen, setIsSignOpen] = useState(false);
-  let navigate = useNavigate();
   const toggleSign = () => {
     setIsSignOpen(!isSignOpen);
   };
@@ -29,24 +28,14 @@ function Login() {
 
   // submit form
   const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    console.log('handleFormSubmit login');
+    toggleSign();
     try {
-      console.log('==============logging in===================');
-      console.log(formState);
       const { data } = await login({
         variables: { ...formState },
       });
-      console.log('====================login==========================');
-      console.log(data);
-      setTimeout(() => {
-        Auth.login(data.login.token);
-      }, 10000);
-      setTimeout(() => {
-        navigate('/dashboard');
-      }, 10000);
+
+      Auth.login(data.login.token);
     } catch (e) {
-      console.log('============ERRRRRRORRRRR====================');
       console.error(e);
     }
 
@@ -111,14 +100,15 @@ function Login() {
                 <button
                   className="button primary signin-button-text font"
                   type="submit"
-                  // {/* <Link */}
-                  // to="/dashboard"
-                  // className="signin-button-text font"
-                  onClick={() => toggleSign()}
-                  // onClick={() => submit()}
                 >
-                  Sign In
-                  {/* </Link> */}
+                  <Link
+                    to="/dashboard"
+                    onClick={() => {
+                      handleFormSubmit();
+                    }}
+                  >
+                    Sign In
+                  </Link>
                 </button>
               </form>
               {error && <div>Login failed</div>}

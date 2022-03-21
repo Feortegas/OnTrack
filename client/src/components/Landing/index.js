@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import './landing.css';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
@@ -23,6 +23,8 @@ function Landing() {
     });
   };
 
+  const auth = Auth.loggedIn();
+
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -38,7 +40,9 @@ function Landing() {
     }
   };
 
-  return (
+  return auth ? (
+    <Navigate to='/dashboard' />
+  ) : (
     <>
       <section className='hero'>
         <div className='hero-body'>

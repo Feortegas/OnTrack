@@ -1,0 +1,70 @@
+.calendar {
+  margin-left: 30%;
+  margin-right: 30%;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.no-projects-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.h3-container{
+  background-color: var(--header);
+  padding: 7px;
+  border: 1px solid #fff;
+  border-radius: 10px;
+}
+
+.no-projects{
+  font-size: 40px;
+  color: var(--text);
+}
+
+.dashboard-title {
+  font-size: 30px;
+  color: var(--link);
+}
+
+.top {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.project-title {
+  color: var(--link);
+}
+
+.secondary {
+  background-color: var(--header);
+}
+
+.primary {
+  background-color: var(--background);
+}
+
+.accent {
+  background-color: var(--accent);
+}
+
+.font {
+  color: var(--text);
+}
+
+.success {
+  color: var(--success);
+}
+
+.warning {
+  color: var(--warning);
+}
+
+a:hover,
+a:visited,
+a:link,
+a:active {
+  text-decoration: none;
+}

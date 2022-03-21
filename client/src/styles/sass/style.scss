@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+$background: rgb(13, 17, 23);
+$header: rgb(22, 27, 34);
+$accent: rgb(33, 38, 45);
+$text: rgb(201, 209, 217);
+$success: rgb(35, 134, 54);
+$warning: rgb(211, 53, 51);
+$link: rgb(47, 140, 247);
+
+$primary: $background;
+$secondary: $header;
+$tertiary: $accent;
+$font: $text;
+$goodButton: $success;
+$warningButton: $warning;
+$projectTitle: $link;
+

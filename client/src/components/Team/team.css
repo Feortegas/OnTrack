@@ -1,0 +1,22 @@
+.team-title {
+  font-size: 30px;
+}
+
+.team-box {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.successBtn {
+  background-color: var(--success);
+}
+
+.update-button{
+  text-align: center;
+  margin-bottom: -40px;
+  margin-top: -40px;
+}
+
+.contributer-container{
+  margin-bottom: 50px;
+}

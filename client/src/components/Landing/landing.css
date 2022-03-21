@@ -1,0 +1,32 @@
+.project-title {
+  color: var(--text);
+}
+
+.center {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.secondary {
+  background-color: var(--header);
+}
+
+.primary {
+  background-color: var(--background);
+}
+
+.accent {
+  background-color: var(--accent);
+}
+
+.font {
+  color: var(--text);
+}
+
+a:hover,
+a:visited,
+a:link,
+a:active {
+  text-decoration: none;
+}

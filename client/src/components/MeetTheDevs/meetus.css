@@ -40,10 +40,10 @@
 }
 
 .portfolio-link{
-    color: #fff;
+    color: var(--text);
 }
 
 .portfolio-link:hover{
-    color: #fff;
+    color: var(--text);
     text-decoration: underline;
 }

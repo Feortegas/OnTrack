@@ -16,24 +16,24 @@ function Header() {
   return (
     <header className='background-color-secondary'>
       <div>
-        <nav className='navbar outline primary'>
-          {/* Hamburger menu */}
-          <div
-            role='button'
-            className={`navbar-burger font${
-              isHamburgerOpen ? 'is-active' : ''
-            }`}
-            aria-label='menu'
-            aria-expanded='false'
-            onClick={() => toggleNav()}
-          >
-            <span aria-hidden='true'></span>
-            <span aria-hidden='true'></span>
-            <span aria-hidden='true'></span>
-          </div>
+        {/* Menu content */}
+        {Auth.loggedIn() ? (
+          <nav className='navbar outline primary'>
+            {/* Hamburger menu */}
+            <div
+              role='button'
+              className={`navbar-burger font${
+                isHamburgerOpen ? 'is-active' : ''
+              }`}
+              aria-label='menu'
+              aria-expanded='false'
+              onClick={() => toggleNav()}
+            >
+              <span aria-hidden='true'></span>
+              <span aria-hidden='true'></span>
+              <span aria-hidden='true'></span>
+            </div>
 
-          {/* Menu content */}
-          {Auth.loggedIn() ? (
             <div
               id='navMenu'
               className={`navbar-menu primary ${
@@ -71,10 +71,10 @@ function Header() {
                 </Link>
               </div>
             </div>
-          ) : (
-            ''
-          )}
-        </nav>
+          </nav>
+        ) : (
+          ''
+        )}
 
         {/* Website Title */}
         <div className='element header-container'>

@@ -30,7 +30,7 @@ function Dashboard() {
 	const projects = data?.projects || [];
 
 	if (!projects.length) {
-		return <h3>No projects yet</h3>;
+		return <div className=' no-projects-container '><div className=' h3-container '><h3 className=' no-projects '>No projects yet</h3></div></div>;
 	}
 
 	return (

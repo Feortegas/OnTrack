@@ -27,6 +27,7 @@ function Login() {
 
   // submit form
   const handleLogin = async (event) => {
+    event.preventDefault();
     toggleSign();
     try {
       const { data } = await login({
@@ -125,6 +126,6 @@ function Login() {
       )}
     </>
   );
-}
+};
 
 export default Login;

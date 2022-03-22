@@ -28,18 +28,19 @@ function Dashboard() {
 	// use useQuery hook to make query request
 	const { loading, data } = useQuery(QUERY_PROJECTS);
 	const projects = data?.projects || [];
-
+	
 	if (!projects.length) {
 		return <div className=' no-projects-container '><div className=' h3-container '><h3 className=' no-projects '>No projects yet</h3></div></div>;
 	}
-
+	
+	const activeProjectIndex = data.projects.length - 1;
 	return (
 		<>
 			<section>
 				<div className='container'>
 					<div className='section'>
 						<h2 className='has-text-centered has-text-weight-semibold is-size-3 project-title'>
-							{projects[0].username} / {projects[0].projectTitle}
+							{projects[activeProjectIndex].username} / {projects[activeProjectIndex].projectTitle}
 						</h2>
 					</div>
 

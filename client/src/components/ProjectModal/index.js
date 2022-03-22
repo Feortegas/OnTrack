@@ -3,7 +3,7 @@ import './projectmodal.css';
 import { useMutation } from '@apollo/client';
 import { ADD_PROJECT } from '../../utils/mutations';
 import { QUERY_PROJECTS } from '../../utils/queries';
-import { getRepo } from '../../api/github';
+import { getRepo, getRepos } from '../../api/github';
 // getRepos returns an Array of Repos.name from the API
 // use it to build the dropdown list dynamically
 
@@ -31,7 +31,7 @@ const ProjectModal = ({ onClose }) => {
 	});
 
 	// update state based on form input changes
-	const handleChangeUser = (event) => {
+	const handleChangeUser = async (event) => {
 		setUsername(event.target.value);
 		// theRepos is an array of repos, return of a promisse from the API fetch
 		// const theRepos = await getRepos(event.target.value);

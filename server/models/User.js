@@ -23,6 +23,9 @@ const userSchema = new Schema(
     profileImgURL: {
       type: String,
     },
+    capacity: {
+      type: Number,
+    },
     projects: [
       {
         type: Schema.Types.ObjectId,

@@ -21,6 +21,11 @@ const resolvers = {
 			const params = username ? { username } : {};
 			return Project.find(params).sort({ createdAt: -1 });
 		},
+		project: async (parent, { projectTitle }) => {
+			return await Project.findOne({ projectTitle })
+			.populate('issues')
+			.populate('contributors');
+		},
 	},
 	Mutation: {
 		addUser: async (parent, args) => {

@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
-// const issueSchema = require('./Issue');
+const issueSchema = require('./Issue');
+const contributorSchema = require('./Contributor');
 
 const projectSchema = new Schema(
 	{
@@ -19,7 +20,8 @@ const projectSchema = new Schema(
 			type: String,
 			default: '03/23/2022',
 		},
-		// issues: [issueSchema],
+		issues: [issueSchema],
+		contributors: [contributorSchema],
 	},
 	{
 		toJSON: {
@@ -28,9 +30,13 @@ const projectSchema = new Schema(
 	}
 );
 
-// projectSchema.virtual('issueCount').get(function () {
-// 	return this.issues.length;
-// });
+projectSchema.virtual('issueCount').get(function () {
+	return this.issues.length;
+});
+
+projectSchema.virtual('contributorCount').get(function () {
+	return this.contributors.length;
+});
 
 const Project = model('Project', projectSchema);
 

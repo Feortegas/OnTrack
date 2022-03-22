@@ -83,28 +83,7 @@ db.once('open', async () => {
   ];
 
   // Create User
-  const userData = [
-    {
-      username: 'jojobautistaum',
-      email: 'gjojob@yahoo.com',
-      password: 'password123',
-    },
-    {
-      username: 'feortegas',
-      email: 'feortegas@gmail.com',
-      password: 'password123',
-    },
-    {
-      username: 'esimondet',
-      email: 'edison.simondet@gmail.com',
-      password: 'password123',
-    },
-    {
-      username: 'hro0806',
-      email: 'henryolson@icloud.com',
-      password: 'password123',
-    },
-  ];
+  const userData = [];
 
   const createdProjects = await Project.collection.insertMany(projectData);
   const createdUsers = await User.collection.insertMany(userData);

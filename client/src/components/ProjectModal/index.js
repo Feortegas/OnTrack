@@ -3,12 +3,12 @@ import './projectmodal.css';
 import { useMutation } from '@apollo/client';
 import { ADD_PROJECT } from '../../utils/mutations';
 // import { QUERY_PROJECTS, QUERY_ME } from '../../utils/queries';
-// import { getRepo, getRepos } from '../../api/github';
+import { getRepo, getRepos } from '../../api/github';
 // getRepos returns an Array of Repos.name from the API
 // use it to build the dropdown list dynamically
 
 const ProjectModal = ({ onClose }) => {
-	const [username, setUsername] = useState('');
+	const [userName, setUsername] = useState('');
 	const [repoName, setRepoName] = useState('');
 	// const [targetDate, setTargetDate] = useState('');
 	// save project to Database
@@ -41,8 +41,8 @@ const ProjectModal = ({ onClose }) => {
 	// update state based on form input changes
 	const handleChangeUser = (event) => {
 		setUsername(event.target.value);
-		// const theRepos = getRepos(event.target.value);
-		// console.log(theRepos);
+		// theRepos is an array of repos, return of a promisse from the API fetch
+		// const theRepos = await getRepos(event.target.value);
 	};
 
 	// update state based on form input changes
@@ -57,20 +57,19 @@ const ProjectModal = ({ onClose }) => {
 	// submit form
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
-		// const targetDate = '03/23/2022';
-		// console.log(username, repoName, targetDate);
-		// const theProject = await getRepo(username, repoName, targetDate);
-		const theProject = {
-			projectID: '469475772',
-			projectTitle: 'OnTrack',
-			projectUrl: 'https://github.com/Feortegas/OnTrack',
-			username: 'Feortegas',
-			completionDate: '03/23/2022',
-		};
+		const targetDate = '03/23/2022';
+		const theProject = await getRepo(userName, repoName, targetDate);
+		// const theProject = {
+		// 	projectID: '469475772',
+		// 	projectTitle: 'OnTrack',
+		// 	projectUrl: 'https://github.com/Feortegas/OnTrack',
+		// 	username: 'Feortegas',
+		// 	completionDate: '03/23/2022',
+		// };
 
 		const projectID = theProject.projectID;
 		const projectTitle = theProject.projectTitle;
-		const projectURL = theProject.projectUrl;
+		const projectURL = theProject.projectURL;
 		const username = theProject.username;
 		const completionDate = theProject.completionDate;
 
@@ -96,9 +95,9 @@ const ProjectModal = ({ onClose }) => {
 
 	return (
 		<>
-			<div id='projectModal' className='modal is-active '>
-				<div className='modal-background '></div>
-				<div className='modal-card '>
+			<div id='projectModal' className='modal is-active'>
+				<div className='modal-background'></div>
+				<div className='modal-card'>
 					<header className='modal-card-head secondary'>
 						<p className='modal-card-title font'> Choose a current project </p>
 						<button
@@ -114,7 +113,7 @@ const ProjectModal = ({ onClose }) => {
 									className='input font primary'
 									type='text'
 									placeholder=''
-									value={username}
+									value={userName}
 									onChange={handleChangeUser}
 								/>
 								<label className='label font'>Github Repo</label>

@@ -1,22 +1,49 @@
 import React from 'react';
 import './team.css';
+import { useQuery, useMutation } from '@apollo/client';
+import { QUERY_PROJECTS } from '../../utils/queries';
+import { ADD_CONTRIBUTOR } from '../../utils/mutations';
+import { getContributors } from '../../api/github';
 
 function Team() {
+
+  // use useQuery hook to make query request
+  const { loading, data } = useQuery(QUERY_PROJECTS);
+  const [ addContributor, { error } ] = useMutation(ADD_CONTRIBUTOR);
+  const projects = data?.projects || [];
+
+  if (!projects.length) {
+    return <div className=' no-projects-container '><div className=' h3-container '><h3 className=' no-projects '>No projects yet</h3></div></div>;
+  }
+
+  const activeProjectIndex = data.projects.length - 1;
+
+  const pullGithubData = async event => {
+    const theContributors = await getContributors(projects[activeProjectIndex].username, projects[activeProjectIndex].projectTitle);
+    // try {
+    //   await addContributor({
+    //     variables: { capacity, projectTitle },
+    //   });
+    // } catch (err) {
+    //   console.error(err);
+    // }
+  }
+
   // test array
   const users = [
     {
       user: 'Fernando',
-      avatar: 'https://avatars.githubusercontent.com/u/91574042?v=4',
+      avatar: 'https://avatars.githubusercontent.com/u/17223625?v=4',
       capacity: '6',
     },
     {
       user: 'Jojo',
-      avatar: 'https://avatars.githubusercontent.com/u/91574042?v=4',
+      avatar: 'https://avatars.githubusercontent.com/u/90885263?v=4',
       capacity: '6',
     },
     {
       user: 'Henry',
-      avatar: 'https://avatars.githubusercontent.com/u/91574042?v=4',
+      avatar: 'https://avatars.githubusercontent.com/u/88246884?v=4',
       capacity: '6',
     },
     {
@@ -55,10 +82,10 @@ function Team() {
             </div>
           </div>
           <div className='section update-button'>
-                <button type='submit' className='button accent font'>
-                  Update Team Capacity
-                </button>
-              </div>
+            <button type='button' className='button accent font' onClick={pullGithubData}>
+              Update Team Capacity
+            </button>
+          </div>
           <div className='section'>
             <div className=' contributer-container '>
               <ul className=' columns '>

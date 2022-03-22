@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './projectmodal.css';
 import { useMutation } from '@apollo/client';
 import { ADD_PROJECT } from '../../utils/mutations';
-// import { QUERY_PROJECTS, QUERY_ME } from '../../utils/queries';
-import { getRepo, getRepos } from '../../api/github';
+import { QUERY_PROJECTS } from '../../utils/queries';
+import { getRepo } from '../../api/github';
 // getRepos returns an Array of Repos.name from the API
 // use it to build the dropdown list dynamically
 
@@ -13,30 +13,22 @@ const ProjectModal = ({ onClose }) => {
 	// const [targetDate, setTargetDate] = useState('');
 	// save project to Database
 
-	const [addProject] = useMutation(ADD_PROJECT);
-
-	// const [addProject, { error }] = useMutation(ADD_PROJECT, {
-	// 	update(cache, { data: { addProject } }) {
-	// 		try {
-	// 			// update project array's cache
-	// 			// could potentially not exist yet, so wrap in a try/catch
-	// 			const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
-	// 			cache.writeQuery({
-	// 				query: QUERY_PROJECTS,
-	// 				data: { projects: [addProject, ...projects] },
-	// 			});
-	// 		} catch (e) {
-	// 			console.error(e);
-	// 		}
-
-	// 		// update me object's cache
-	// 		// const { me } = cache.readQuery({ query: QUERY_ME });
-	// 		// cache.writeQuery({
-	// 		// 	query: QUERY_ME,
-	// 		// 	data: { me: { ...me, projects: [...me.projects, addProject] } },
-	// 		// });
-	// 	},
-	// });
+	// const [addProject, { error }] = useMutation(ADD_PROJECT);
+	const [addProject, { error }] = useMutation(ADD_PROJECT, {
+		update(cache, { data: { addProject } }) {
+			try {
+				// update project array's cache
+				// could potentially not exist yet, so wrap in a try/catch
+				const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
+				cache.writeQuery({
+					query: QUERY_PROJECTS,
+					data: { projects: [addProject, ...projects] },
+				});
+			} catch (e) {
+				console.error(e);
+			}
+		},
+	});
 
 	// update state based on form input changes
 	const handleChangeUser = (event) => {
@@ -55,7 +47,7 @@ const ProjectModal = ({ onClose }) => {
 	// };
 
 	// submit form
-	const handleFormSubmit = async (event) => {
+	const handleFormSubmit = async event => {
 		event.preventDefault();
 		const targetDate = '03/23/2022';
 		const theProject = await getRepo(userName, repoName, targetDate);
@@ -73,6 +65,8 @@ const ProjectModal = ({ onClose }) => {
 		const username = theProject.username;
 		const completionDate = theProject.completionDate;
 
+		// console.log(projectID, projectTitle, projectURL, username, completionDate);
+
 		try {
 			await addProject({
 				variables: {
@@ -81,7 +75,7 @@ const ProjectModal = ({ onClose }) => {
 					projectURL,
 					username,
 					completionDate,
-				},
+				}
 			});
 
 			// clear form value
@@ -106,7 +100,7 @@ const ProjectModal = ({ onClose }) => {
 							aria-label='close'></button>
 					</header>
 					<section className='modal-card-body accent'>
-						<div>
+						<div onSubmit={handleFormSubmit}>
 							<div className='section font'>
 								<label className='label font'>Github Username</label>
 								<input
@@ -119,8 +113,8 @@ const ProjectModal = ({ onClose }) => {
 								<label className='label font'>Github Repo</label>
 								{/* temporary hardcode repos - generate list dynamically */}
 								<select value={repoName} onChange={handleChangeRepo}>
-									<option value='OnTrack'>OnTrack</option>
 									<option value='reddit-clone'>reddit-clone</option>
+									<option value='OnTrack'>OnTrack</option>
 								</select>
 								<h3>
 									*Note: OnTrack only works with public GitHub repositories
@@ -130,8 +124,8 @@ const ProjectModal = ({ onClose }) => {
 								<label className='label font'>Target Date</label>
 								<input
 									type='date'
-									// value={targetDate}
-									// onChange={handleChangeDate}
+								// value={targetDate}
+								// onChange={handleChangeDate}
 								/>
 							</div>
 							<div className='section font'>

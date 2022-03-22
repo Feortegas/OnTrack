@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import './login.css';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
@@ -28,6 +28,7 @@ function Login() {
 
   // submit form
   const handleLogin = async (event) => {
+    event.preventDefault();
     toggleSign();
     try {
       const { data } = await login({
@@ -126,6 +127,6 @@ function Login() {
       )}
     </>
   );
-}
+};
 
 export default Login;

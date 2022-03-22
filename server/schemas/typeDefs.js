@@ -29,15 +29,10 @@ const typeDefs = gql`
   }
 
   type Query {
+    me: User
     users: [User]
     projects: [Project]
     project(_id: ID!): Project
-  }
-
-  type Query {
-    me: User
-    users: [User]
-    projects(username: String): [Project]
   }
 
   type Mutation {
@@ -45,16 +40,16 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!, profileImgURL: String): Auth
     deleteUser(_id: ID!): User
     addProject(
-      projectID: String!,
-      projectTitle: String!,
-      projectURL: String!,
-      username: String!,
+      projectID: Int,
+      projectTitle: String,
+      projectURL: String,
+      username: String,
       completionDate: String
     ): Project
     deleteProject(_id: ID!): Project
     updateProject(_id: String!): Project
     addIssue(
-      projectId: ID!,
+      projectId: Int!,
       issueID: Int!,
       title: String!,
       description: String!,

@@ -44,7 +44,7 @@ function Issues() {
             <div>
               <div className='columns is-flex-wrap-wrap '>
                 {activeProject.issues.map((issue) => (
-                  <div className='column card primary'>
+                  <div key={issue._id} className='column card primary'>
                     <header className='card-header'>
                       <h3 className='secondary card-header-title has-text-centered font top is-size-6 '>
                         {issue.title}

@@ -62,8 +62,8 @@ export const ADD_PROJECT = gql`
 `;
 
 export const ADD_CONTRIBUTOR = gql`
-mutation addContributor($projectId: ID!) {
-	addContributor(projectID: $projectID) {
+mutation addContributor($projectTitle: String, $username: String) {
+	addContributor(projectTitle: $projectTitle, username: $username) {
 		_id
 		contributorCount
 		contributors {
@@ -76,13 +76,14 @@ mutation addContributor($projectId: ID!) {
 `;
 
 export const ADD_ISSUE = gql`
-mutation addIssue($projectId: ID!) {
-	addIssue(projectID: $projectID) {
+mutation addIssue($projectTitle: String, $title: String ) {
+	addIssue(projectTitle: $projectTitle, title: $title) {
 		_id
 		issueCount
 		issues {
 			_id
 			issueID
+			title
 			description
 			username
 			duration

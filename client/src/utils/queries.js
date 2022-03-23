@@ -10,11 +10,16 @@ export const QUERY_PROJECTS = gql`
       username
       completionDate
       issues {
+        _id
         issueID
         title
         description
         username
         duration
+      }
+      contributors {
+        _id
+        username
       }
     }
   }

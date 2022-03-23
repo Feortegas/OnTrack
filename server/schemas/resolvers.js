@@ -23,8 +23,8 @@ const resolvers = {
 		},
 		project: async (parent, { projectTitle }) => {
 			return await Project.findOne({ projectTitle })
-			.populate('issues')
-			.populate('contributors');
+				.populate('issues')
+				.populate('contributors');
 		},
 	},
 	Mutation: {
@@ -79,13 +79,31 @@ const resolvers = {
 			return { user };
 		},
 
-		addIssue: async (parent, { projectId, issueID, title }, context) => {
+		addIssue: async (parent, { projectTitle, title }, context) => {
 			if (context.user) {
 				const updatedProject = await Project.findOneAndUpdate(
-					{ _id: projectId },
+					{ projectTitle: projectTitle },
 					{
 						$push: {
-							issues: { issueID, title, username: context.user.username },
+							issues: { title },
+						},
+					},
+					{ new: true, runValidators: true }
+				);
+
+				return updatedProject;
+			}
+
+			throw new AuthenticationError('You need to be logged in!');
+		},
+
+		addContributor: async (parent, { projectTitle, username }, context) => {
+			if (context.user) {
+				const updatedProject = await Project.findOneAndUpdate(
+					{ projectTitle: projectTitle },
+					{
+						$push: {
+							contributors: { username },
 						},
 					},
 					{ new: true, runValidators: true }

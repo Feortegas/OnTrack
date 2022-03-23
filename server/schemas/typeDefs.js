@@ -43,6 +43,7 @@ const typeDefs = gql`
     user(username: String!): User
     projects(username: String): [Project]
     project(projectTitle: String): Project
+    contributors(username: String): [Project]
   }
 
   type Mutation {
@@ -59,7 +60,8 @@ const typeDefs = gql`
     deleteProject(_id: ID!): Project
     updateProject(_id: String!): Project
     addIssue(
-      projectID: Int!,
+      projectId: ID,
+      projectTitle: String,
       issueID: Int,
       title: String,
       description: String,
@@ -67,7 +69,8 @@ const typeDefs = gql`
       duration: Int
     ): Project
     addContributor(
-      projectID: Int!,
+      projectId: ID,
+      projectTitle: String,
       username: String,
       capacity: Int
     ): Project

@@ -15,24 +15,25 @@ const ProjectModal = ({ onClose }) => {
   const [theRepos, setTheRepos] = useState([]);
   // save project to Database
 
-  const [addProject] = useMutation(ADD_PROJECT);
+  // const [addProject] = useMutation(ADD_PROJECT);
   const [addContributor] = useMutation(ADD_CONTRIBUTOR);
   const [addIssue] = useMutation(ADD_ISSUE);
-  // const [addProject, { error }] = useMutation(ADD_PROJECT, {
-  // 	update(cache, { data: { addProject } }) {
-  // 		try {
-  // 			// update project array's cache
-  // 			// could potentially not exist yet, so wrap in a try/catch
-  // 			const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
-  // 			cache.writeQuery({
-  // 				query: QUERY_PROJECTS,
-  // 				data: { projects: [addProject, ...projects] },
-  // 			});
-  // 		} catch (e) {
-  // 			console.error(e);
-  // 		}
-  // 	},
-  // });
+
+  const [addProject] = useMutation(ADD_PROJECT, {
+    update(cache, { data: { addProject } }) {
+      try {
+        // update project array's cache
+        // could potentially not exist yet, so wrap in a try/catch
+        const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
+        cache.writeQuery({
+          query: QUERY_PROJECTS,
+          data: { projects: [addProject, ...projects] },
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    },
+  });
 
   // update state based on form input changes
   //wait for user to stop typing before API call
@@ -77,7 +78,7 @@ const ProjectModal = ({ onClose }) => {
     const username = theProject.owner.login;
     const completionDate = targetDate;
 
-    
+
     try {
       console.log(projectID, projectTitle, projectURL, username, completionDate);
       await addProject({
@@ -89,6 +90,21 @@ const ProjectModal = ({ onClose }) => {
           completionDate,
         },
       });
+      const theContributors = await getContributors(userName, repoName);
+
+      for (let index = 0; index < theContributors.length; index++) {
+        await addContributor({
+          variables: { username: theContributors[index], projectTitle: projectTitle }
+        });
+      };
+
+      const theIssues = await getIssues(userName, repoName);
+
+      for (let index = 0; index < theIssues.length; index++) {
+        await addIssue({
+          variables: { title: theIssues[index], projectTitle: projectTitle }
+        });
+      };
 
       // clear form value
       setUsername('');

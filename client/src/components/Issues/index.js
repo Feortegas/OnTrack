@@ -1,29 +1,20 @@
 import React from 'react';
+import { useQuery } from '@apollo/client';
+import { QUERY_PROJECTS } from '../../utils/queries';
 
 function Issues() {
-  // test array
-  const issues = [
-    {
-      issue: 'style CSS',
-      duration: '6',
-    },
-    {
-      issue: 'build front end',
-      duration: '4',
-    },
-    {
-      issue: 'build database',
-      duration: '7',
-    },
-    {
-      issue: 'Edison',
-      duration: '2',
-    },
-  ];
+
+  // use useQuery hook to make query request
+  const { loading, data } = useQuery(QUERY_PROJECTS);
+  const projects = data?.projects || [];
+
+  const activeProjectIndex = data.projects.length - 1;
+
+  const activeProject = data.projects[activeProjectIndex];
 
   let remainingHours = 0;
 
-  issues.forEach(capacitySum);
+  activeProject.issues.forEach(capacitySum);
 
   function capacitySum(issues) {
     remainingHours += parseInt(issues.duration);
@@ -53,11 +44,11 @@ function Issues() {
           <div className='section'>
             <div>
               <ul className='columns'>
-                {issues.map((issue) => (
+                {activeProject.issues.map((issue) => (
                   <li className='column container '>
                     <div className='card primary'>
                       <h3 className='secondary has-text-centered font top is-size-5'>
-                        {issue.issue}
+                        {issue.title}
                       </h3>
 
                       {/* set individual issue duration */}

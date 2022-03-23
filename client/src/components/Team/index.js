@@ -29,7 +29,7 @@ function Team() {
     );
   }
 
-  const activeProjectIndex = data.projects.length - 1;
+  // const activeProjectIndex = data.projects.length - 1;
 
   return (
     <>

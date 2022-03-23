@@ -4,7 +4,7 @@ import './landing.css';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
-import { getUser } from '../../api/github';
+// import { getUser } from '../../api/github';
 
 function Landing() {
 	const [formState, setFormState] = useState({
@@ -30,12 +30,12 @@ function Landing() {
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
     // userData is a return of a promisse, that's why I'm using await
-		const userData =  await getUser(formState.username);
-    const profileImgURL = userData.profileImgURL;
+		// const userData =  await getUser(formState.username);
+    // const profileImgURL = userData.profileImgURL;
 		
 		try {
 			const { data } = await addUser({
-				variables: { profileImgURL: profileImgURL, ...formState },
+				variables: { ...formState },
 			});
 			console.log(data.addUser.token);
 			Auth.login(data.addUser.token);

@@ -8,7 +8,10 @@ const contributorSchema = new Schema(
     capacity: {
       type: Number,
       default: 8
-    }
+    },
+    avatar_url: {
+      type: String
+    },
   },
   {
     toJSON: {

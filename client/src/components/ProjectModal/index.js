@@ -94,7 +94,7 @@ const ProjectModal = ({ onClose }) => {
 
       for (let index = 0; index < theContributors.length; index++) {
         await addContributor({
-          variables: { username: theContributors[index], projectTitle: projectTitle }
+          variables: { username: theContributors[index].login, avatar_url: theContributors[index].avatar_url, projectTitle: projectTitle }
         });
       };
 

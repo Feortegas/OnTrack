@@ -78,7 +78,7 @@ const getContributors = async (user, repo) => {
 		const data = await res.json();
 		// return contributors data array
 		for (let index = 0; index < data.length; index++) {
-			contributorArr.push(data[index].login);
+			contributorArr.push(data[index]);
 		};
 		console.log(contributorArr);
 		return contributorArr;

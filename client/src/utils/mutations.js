@@ -62,14 +62,15 @@ export const ADD_PROJECT = gql`
 `;
 
 export const ADD_CONTRIBUTOR = gql`
-mutation addContributor($projectTitle: String, $username: String) {
-	addContributor(projectTitle: $projectTitle, username: $username) {
+mutation addContributor($projectTitle: String, $username: String, $avatar_url: String) {
+	addContributor(projectTitle: $projectTitle, username: $username, avatar_url: $avatar_url) {
 		_id
 		contributorCount
 		contributors {
 			_id
 			username
 			capacity
+			avatar_url
 		}
 	}
 }

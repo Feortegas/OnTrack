@@ -17,6 +17,10 @@ function Project() {
   const { loading, data } = useQuery(QUERY_PROJECTS);
   const projects = data?.projects || [];
 
+  const activeProjectIndex = data.projects.length - 1;
+
+  const activeProject = data.projects[activeProjectIndex];
+
   if (!projects.length) {
     return (
       <section className='section'>
@@ -56,7 +60,7 @@ function Project() {
               Current Project
             </h1>
             <h2 className='center section is-size-3 project-title'>
-              {projects[0].projectTitle}
+              {activeProject.projectTitle}
             </h2>
             <div className='section center'>
               <h3 className='font'>Select a new project</h3>

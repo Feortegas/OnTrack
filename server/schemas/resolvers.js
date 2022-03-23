@@ -97,13 +97,13 @@ const resolvers = {
 			throw new AuthenticationError('You need to be logged in!');
 		},
 
-		addContributor: async (parent, { projectTitle, username }, context) => {
+		addContributor: async (parent, { projectTitle, username, avatar_url }, context) => {
 			if (context.user) {
 				const updatedProject = await Project.findOneAndUpdate(
 					{ projectTitle: projectTitle },
 					{
 						$push: {
-							contributors: { username },
+							contributors: { username, avatar_url },
 						},
 					},
 					{ new: true, runValidators: true }

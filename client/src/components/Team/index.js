@@ -8,16 +8,11 @@ function Team() {
   const { loading, data } = useQuery(QUERY_PROJECTS);
   const projects = data?.projects || [];
 
-  // once team capacity is available, use this to calculate total team capacity,
-  let totalCapacity = 0;
+  const activeProjectIndex = data.projects.length - 1;
 
-  // users.forEach(capacitySum);
+  const activeProject = data.projects[activeProjectIndex];
 
-  // function capacitySum(users) {
-  //   totalCapacity += parseInt(users.capacity);
-
-  // then save total team capacity to the database
-  // }
+  const teamCapacity = activeProject.contributorCount * 8;
 
   if (!projects.length) {
     return (
@@ -28,8 +23,6 @@ function Team() {
       </div>
     );
   }
-
-  // const activeProjectIndex = data.projects.length - 1;
 
   return (
     <>
@@ -47,10 +40,10 @@ function Team() {
             <div className='section'>
               <div className='box accent'>
                 <h2 className='is-size-4 has-text-centered font has-text-weight-semibold'>
-                  Total Team Capacity:
+                  Total Team Daily Capacity:
                 </h2>
                 <p className='is-size-4 has-text-centered font has-text-weight-semibold'>
-                  {totalCapacity}
+                  {teamCapacity} h
                 </p>
               </div>
             </div>
@@ -62,17 +55,17 @@ function Team() {
             <div className='section'>
               <div className=' contributer-container '>
                 <ul className=' columns '>
-                  {projects.map((team) => (
-                    <li className='column container '>
+                  {activeProject.contributors.map((contributor) => (
+                    <li key={contributor.username} className='column container '>
                       <div className='card primary'>
                         <h3 className='secondary has-text-centered font top is-size-5 has-text-weight-semibold'>
-                          {team.user}
+                          {contributor.username}
                         </h3>
                         <div className='card-image secondary'>
                           <figure className='image'>
                             <img
-                              src={`${team.avatar}`}
-                              alt={team.user}
+                              src={`${contributor.avatar_url}`}
+                              alt={contributor.username}
                               className='is-rounded'
                             />
                           </figure>
@@ -87,8 +80,8 @@ function Team() {
                             </p>
                             <div className='select is-fullwidth'>
                               <select name='capacity'>
-                                <option value={`${team.capacity}`}>
-                                  {team.capacity}
+                                <option value={`${contributor.capacity}`}>
+                                  {contributor.capacity}
                                 </option>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>

@@ -35,6 +35,7 @@ const typeDefs = gql`
     _id: ID
     username: String
     capacity: Int
+    avatar_url: String
   }
 
   type Query {
@@ -72,7 +73,8 @@ const typeDefs = gql`
       projectId: ID,
       projectTitle: String,
       username: String,
-      capacity: Int
+      capacity: Int,
+      avatar_url: String
     ): Project
   }
 

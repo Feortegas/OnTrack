@@ -22,6 +22,8 @@ export const QUERY_PROJECTS = gql`
       contributors {
         _id
         username
+        capacity
+        avatar_url
       }
     }
   }

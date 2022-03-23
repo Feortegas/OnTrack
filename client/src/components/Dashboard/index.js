@@ -35,6 +35,7 @@ function Dashboard() {
   const totalTeamCapacity = teamCapacity * daysRemaining;
 
   function onTrack() {
+    console.log(daysRemaining);
     if (daysRemaining * teamCapacity <= remainingWork) {
       return 'Behind';
     } else {

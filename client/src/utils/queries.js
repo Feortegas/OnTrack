@@ -9,6 +9,8 @@ export const QUERY_PROJECTS = gql`
       projectURL
       username
       completionDate
+      issueCount
+      contributorCount
       issues {
         _id
         issueID

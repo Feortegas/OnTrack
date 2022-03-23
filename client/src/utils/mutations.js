@@ -75,6 +75,22 @@ mutation addContributor($projectId: ID!) {
 }
 `;
 
+export const ADD_ISSUE = gql`
+mutation addIssue($projectId: ID!) {
+	addIssue(projectID: $projectID) {
+		_id
+		issueCount
+		issues {
+			_id
+			issueID
+			description
+			username
+			duration
+		}
+	}
+}
+`;
+
 export const DELETE_PROJECT = gql`
 	mutation deleteProject($id: ID!) {
 		deleteProject(_id: $id) {

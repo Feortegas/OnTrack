@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './projectmodal.css';
 import { useMutation } from '@apollo/client';
-import { ADD_PROJECT } from '../../utils/mutations';
+import { ADD_PROJECT, ADD_CONTRIBUTOR, ADD_ISSUE } from '../../utils/mutations';
 import { QUERY_PROJECTS } from '../../utils/queries';
-import { getRepo, getRepos } from '../../api/github';
+import { getRepo, getRepos, getIssues, getContributors } from '../../api/github';
 // getRepos returns an Array of Repos.name from the API
 // use it to build the dropdown list dynamically
 
@@ -13,22 +13,24 @@ const ProjectModal = ({ onClose }) => {
 	// const [targetDate, setTargetDate] = useState('');
 	// save project to Database
 
-	// const [addProject, { error }] = useMutation(ADD_PROJECT);
-	const [addProject, { error }] = useMutation(ADD_PROJECT, {
-		update(cache, { data: { addProject } }) {
-			try {
-				// update project array's cache
-				// could potentially not exist yet, so wrap in a try/catch
-				const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
-				cache.writeQuery({
-					query: QUERY_PROJECTS,
-					data: { projects: [addProject, ...projects] },
-				});
-			} catch (e) {
-				console.error(e);
-			}
-		},
-	});
+	const [addProject] = useMutation(ADD_PROJECT);
+	const [addContributor] = useMutation(ADD_CONTRIBUTOR);
+	const [addIssue] = useMutation(ADD_ISSUE);
+	// const [addProject, { error }] = useMutation(ADD_PROJECT, {
+	// 	update(cache, { data: { addProject } }) {
+	// 		try {
+	// 			// update project array's cache
+	// 			// could potentially not exist yet, so wrap in a try/catch
+	// 			const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
+	// 			cache.writeQuery({
+	// 				query: QUERY_PROJECTS,
+	// 				data: { projects: [addProject, ...projects] },
+	// 			});
+	// 		} catch (e) {
+	// 			console.error(e);
+	// 		}
+	// 	},
+	// });
 
 	// update state based on form input changes
 	const handleChangeUser = async (event) => {
@@ -115,6 +117,7 @@ const ProjectModal = ({ onClose }) => {
 								<select value={repoName} onChange={handleChangeRepo}>
 									<option value='reddit-clone'>reddit-clone</option>
 									<option value='OnTrack'>OnTrack</option>
+									<option value='doggy-days'>doggy-days</option>
 								</select>
 								<h3>
 									*Note: OnTrack only works with public GitHub repositories

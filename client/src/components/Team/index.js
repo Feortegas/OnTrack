@@ -19,7 +19,8 @@ function Team() {
   const activeProjectIndex = data.projects.length - 1;
 
   const pullGithubData = async event => {
-    const theContributors = await getContributors(projects[activeProjectIndex].username, projects[activeProjectIndex].projectTitle);
+    console.log(projects[activeProjectIndex].owner.login, projects[activeProjectIndex].projectTitle);
+    const theContributors = await getContributors(projects[activeProjectIndex].owner.login, projects[activeProjectIndex].projectTitle);
     // try {
     //   await addContributor({
     //     variables: { capacity, projectTitle },

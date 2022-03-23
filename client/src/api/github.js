@@ -86,5 +86,3 @@ export const getContributors = async (user, repo) => {
     console.error(err);
   }
 };
-
-module.exports = { getRepo, getRepos, getUser, getIssues, getContributors };

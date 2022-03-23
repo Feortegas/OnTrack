@@ -43,7 +43,7 @@ function MeetTheDevs() {
                 <p className='roles card-content mt-2 is-size-5 has-text-weight-semibold'>
                   Name: Edison Simondet
                   <br />
-                  Roles: Front-end Engineer, Navigation/Authentication
+                  Roles: Front-end Engineer, Navigation / Authentication
                   <br />
                   Portfolio:{' '}
                   <a

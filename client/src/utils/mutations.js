@@ -61,6 +61,38 @@ export const ADD_PROJECT = gql`
 	}
 `;
 
+export const ADD_CONTRIBUTOR = gql`
+mutation addContributor($projectTitle: String, $username: String, $avatar_url: String) {
+	addContributor(projectTitle: $projectTitle, username: $username, avatar_url: $avatar_url) {
+		_id
+		contributorCount
+		contributors {
+			_id
+			username
+			capacity
+			avatar_url
+		}
+	}
+}
+`;
+
+export const ADD_ISSUE = gql`
+mutation addIssue($projectTitle: String, $title: String ) {
+	addIssue(projectTitle: $projectTitle, title: $title) {
+		_id
+		issueCount
+		issues {
+			_id
+			issueID
+			title
+			description
+			username
+			duration
+		}
+	}
+}
+`;
+
 export const DELETE_PROJECT = gql`
 	mutation deleteProject($id: ID!) {
 		deleteProject(_id: $id) {

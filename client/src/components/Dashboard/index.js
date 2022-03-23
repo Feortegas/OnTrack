@@ -20,33 +20,23 @@ function Dashboard() {
 
   const activeProjectIndex = data.projects.length - 1;
 
-  const [progressValues] = [
-    {
-      capacity: '15',
-      hours: '185',
-    },
-  ];
+  const activeProject = data.projects[activeProjectIndex];
 
-  function daysRemaining() {
-    var today = new Date();
-    var completionDate = new Date(projects[activeProjectIndex].completionDate);
-    var diff = Math.abs(today - completionDate);
-    const days = Math.floor(diff / (24 * 60 * 60 * 1000));
+  const teamCapacity = activeProject.contributorCount * 8;
+  const remainingWork = activeProject.issueCount * 8;
+  // console.log(teamCapacity, remainingWork);
 
-    return days;
-  }
+  // calculates total project days remaining as well as total needed days to be on track
+  let today = new Date();
+  let completionDate = new Date(activeProject.completionDate);
+  let diff = Math.abs(today - completionDate);
+  const daysRemaining = Math.floor(diff / (24 * 60 * 60 * 1000));
 
-  //currently days is the only element that is dynamic, capactiy and hours are hard coded
-
-  const projected =
-    progressValues.hours -
-    progressValues.capacity * projects[activeProjectIndex].completionDate;
-
-  const remaining =
-    progressValues.hours / projects[activeProjectIndex].completionDate;
+  const totalTeamCapacity = teamCapacity * daysRemaining;
 
   function onTrack() {
-    if (remaining <= projected) {
+    console.log(daysRemaining);
+    if (daysRemaining * teamCapacity <= remainingWork) {
       return 'Behind';
     } else {
       return 'OnTrack';
@@ -63,8 +53,8 @@ function Dashboard() {
             <div className='container'>
               <div className='section'>
                 <h2 className='has-text-centered has-text-weight-semibold is-size-3 project-title'>
-                  {projects[activeProjectIndex].username} /{' '}
-                  {projects[activeProjectIndex].projectTitle}
+                  {activeProject.username} /{' '}
+                  {activeProject.projectTitle}
                 </h2>
               </div>
 
@@ -76,7 +66,7 @@ function Dashboard() {
                   <div className='calendar accent '>
                     <br />
                     <div className='is-size-4 has-text-centered font has-text-weight-semibold'>
-                      {daysRemaining()}
+                      {daysRemaining}
                     </div>
                     <br />
                   </div>
@@ -106,26 +96,26 @@ function Dashboard() {
                       Total # of Issues:
                     </p>
                     <p className='font'>
-                      {projects[activeProjectIndex].issueCount}
+                      {activeProject.issueCount}
                     </p>
                   </div>
                   <div className='column accent'>
                     <p className='project-title has-text-weight-semibold'>
-                      unused
+                      Daily Capacity
                     </p>
-                    <p className='font'>%</p>
+                    <p className='font'>{teamCapacity} h</p>
                   </div>
                   <div className='column accent'>
                     <p className='project-title has-text-weight-semibold'>
-                      unused
+                      Total Team Capacity
                     </p>
-                    <p className='font'>%</p>
+                    <p className='font'>{totalTeamCapacity} h</p>
                   </div>
                   <div className='column accent'>
                     <p className='project-title has-text-weight-semibold'>
                       Issue Hours Remaining:
                     </p>
-                    <p className='font'>{progressValues.hours} hours</p>
+                    <p className='font'>{remainingWork} hours</p>
                   </div>
                 </div>
               </div>

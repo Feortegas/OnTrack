@@ -11,16 +11,19 @@ const typeDefs = gql`
 
   type Project {
     _id: ID
-    projectID: String
+    projectID: Int
     projectTitle: String
     projectURL: String
     username: String
     completionDate: String
     issueCount: Int
+    contributorCount: Int
     issues: [Issue]
+    contributors: [Contributor]
   }
 
   type Issue {
+    _id: ID
     issueID: String
     title: String
     description: String
@@ -28,11 +31,20 @@ const typeDefs = gql`
     duration: Int
   }
 
+  type Contributor {
+    _id: ID
+    username: String
+    capacity: Int
+    avatar_url: String
+  }
+
   type Query {
     me: User
     users: [User]
-    projects: [Project]
-    project(_id: ID!): Project
+    user(username: String!): User
+    projects(username: String): [Project]
+    project(projectTitle: String): Project
+    contributors(username: String): [Project]
   }
 
   type Mutation {
@@ -49,12 +61,21 @@ const typeDefs = gql`
     deleteProject(_id: ID!): Project
     updateProject(_id: String!): Project
     addIssue(
-      projectId: Int!,
-      issueID: Int!,
-      title: String!,
-      description: String!,
-      duration: Int!
-    ): Issue
+      projectId: ID,
+      projectTitle: String,
+      issueID: Int,
+      title: String,
+      description: String,
+      username: String,
+      duration: Int
+    ): Project
+    addContributor(
+      projectId: ID,
+      projectTitle: String,
+      username: String,
+      capacity: Int,
+      avatar_url: String
+    ): Project
   }
 
   type Auth {

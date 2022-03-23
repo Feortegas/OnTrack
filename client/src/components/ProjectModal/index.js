@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './projectmodal.css';
 import { useMutation } from '@apollo/client';
-import { ADD_PROJECT } from '../../utils/mutations';
+import { ADD_PROJECT, ADD_CONTRIBUTOR, ADD_ISSUE } from '../../utils/mutations';
 import { QUERY_PROJECTS } from '../../utils/queries';
-import { getRepo, getRepos } from '../../api/github';
+import { getRepo, getRepos, getIssues, getContributors } from '../../api/github';
 // getRepos returns an Array of Repos.name from the API
 // use it to build the dropdown list dynamically
 
@@ -15,8 +15,11 @@ const ProjectModal = ({ onClose }) => {
   const [theRepos, setTheRepos] = useState([]);
   // save project to Database
 
-  // const [addProject, { error }] = useMutation(ADD_PROJECT);
-  const [addProject, { error }] = useMutation(ADD_PROJECT, {
+  // const [addProject] = useMutation(ADD_PROJECT);
+  const [addContributor] = useMutation(ADD_CONTRIBUTOR);
+  const [addIssue] = useMutation(ADD_ISSUE);
+
+  const [addProject] = useMutation(ADD_PROJECT, {
     update(cache, { data: { addProject } }) {
       try {
         // update project array's cache
@@ -34,16 +37,16 @@ const ProjectModal = ({ onClose }) => {
 
   // update state based on form input changes
   //wait for user to stop typing before API call
-  useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
-      setDelayedUsername(userName);
-    }, 3000);
+  // useEffect(() => {
+  //   const delayDebounceFn = setTimeout(() => {
+  //     setDelayedUsername(userName);
+  //   }, 3000);
 
-    return () => clearTimeout(delayDebounceFn);
-  }, [userName]);
+  //   return () => clearTimeout(delayDebounceFn);
+  // }, [userName]);
 
   const handleChangeUser = async () => {
-    setUsername(delayedUserName);
+    // setUsername(delayedUserName);
 
     // theRepos is an array of repos, return of a promise from the API fetch
     const repos = await getRepos(userName);
@@ -60,7 +63,7 @@ const ProjectModal = ({ onClose }) => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     // const targetDate = '03/23/2022';
-    const theProject = await getRepo(userName, repoName, targetDate);
+    const theProject = await getRepo(userName, repoName);
     // const theProject = {
     // 	projectID: '469475772',
     // 	projectTitle: 'OnTrack',
@@ -69,15 +72,15 @@ const ProjectModal = ({ onClose }) => {
     // 	completionDate: '03/23/2022',
     // };
 
-    const projectID = theProject.projectID;
-    const projectTitle = theProject.projectTitle;
-    const projectURL = theProject.projectURL;
-    const username = theProject.username;
-    const completionDate = theProject.completionDate;
+    const projectID = theProject.id;
+    const projectTitle = theProject.name;
+    const projectURL = theProject.html_url;
+    const username = theProject.owner.login;
+    const completionDate = targetDate;
 
-    console.log(projectID, projectTitle, projectURL, username, completionDate);
 
     try {
+      console.log(projectID, projectTitle, projectURL, username, completionDate);
       await addProject({
         variables: {
           projectID,
@@ -87,6 +90,21 @@ const ProjectModal = ({ onClose }) => {
           completionDate,
         },
       });
+      const theContributors = await getContributors(userName, repoName);
+
+      for (let index = 0; index < theContributors.length; index++) {
+        await addContributor({
+          variables: { username: theContributors[index].login, avatar_url: theContributors[index].avatar_url, projectTitle: projectTitle }
+        });
+      };
+
+      const theIssues = await getIssues(userName, repoName);
+
+      for (let index = 0; index < theIssues.length; index++) {
+        await addIssue({
+          variables: { title: theIssues[index], projectTitle: projectTitle }
+        });
+      };
 
       // clear form value
       setUsername('');

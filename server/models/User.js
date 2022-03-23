@@ -20,6 +20,12 @@ const userSchema = new Schema(
       required: true,
       minlength: 5,
     },
+    profileImgURL: {
+      type: String,
+    },
+    capacity: {
+      type: Number,
+    },
     projects: [
       {
         type: Schema.Types.ObjectId,

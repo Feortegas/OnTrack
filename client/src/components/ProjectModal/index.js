@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './projectmodal.css';
 import { useMutation } from '@apollo/client';
 import { ADD_PROJECT, ADD_CONTRIBUTOR, ADD_ISSUE } from '../../utils/mutations';
@@ -8,10 +8,12 @@ import { getRepo, getRepos, getIssues, getContributors } from '../../api/github'
 // use it to build the dropdown list dynamically
 
 const ProjectModal = ({ onClose }) => {
-	const [userName, setUsername] = useState('');
-	const [repoName, setRepoName] = useState('');
-	// const [targetDate, setTargetDate] = useState('');
-	// save project to Database
+  const [userName, setUsername] = useState('');
+  const [delayedUserName, setDelayedUsername] = useState('');
+  const [repoName, setRepoName] = useState('');
+  const [targetDate, setTargetDate] = useState('');
+  const [theRepos, setTheRepos] = useState([]);
+  // save project to Database
 
 	const [addProject] = useMutation(ADD_PROJECT);
 	const [addContributor] = useMutation(ADD_CONTRIBUTOR);
@@ -32,128 +34,157 @@ const ProjectModal = ({ onClose }) => {
 	// 	},
 	// });
 
-	// update state based on form input changes
-	const handleChangeUser = async (event) => {
-		setUsername(event.target.value);
-		// theRepos is an array of repos, return of a promisse from the API fetch
-		// const theRepos = await getRepos(event.target.value);
-	};
+  // update state based on form input changes
+  //wait for user to stop typing before API call
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      setDelayedUsername(userName);
+    }, 3000);
 
-	// update state based on form input changes
-	const handleChangeRepo = (event) => {
-		setRepoName(event.target.value);
-	};
+    return () => clearTimeout(delayDebounceFn);
+  }, [userName]);
 
-	// const handleChangeDate = (event) => {
-	// 	setTargetDate(event.targe.value);
-	// };
+  const handleChangeUser = async () => {
+    setUsername(delayedUserName);
 
-	// submit form
-	const handleFormSubmit = async event => {
-		event.preventDefault();
-		const targetDate = '03/23/2022';
-		const theProject = await getRepo(userName, repoName, targetDate);
-		// const theProject = {
-		// 	projectID: '469475772',
-		// 	projectTitle: 'OnTrack',
-		// 	projectUrl: 'https://github.com/Feortegas/OnTrack',
-		// 	username: 'Feortegas',
-		// 	completionDate: '03/23/2022',
-		// };
+    // theRepos is an array of repos, return of a promise from the API fetch
+    const repos = await getRepos(userName);
+    console.log(repos);
+    setTheRepos(repos);
+  };
 
-		const projectID = theProject.projectID;
-		const projectTitle = theProject.projectTitle;
-		const projectURL = theProject.projectURL;
-		const username = theProject.username;
-		const completionDate = theProject.completionDate;
+  // update state based on form input changes
+  const handleChangeRepo = (event) => {
+    setRepoName(event.target.value);
+  };
 
-		// console.log(projectID, projectTitle, projectURL, username, completionDate);
+  // submit form
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    // const targetDate = '03/23/2022';
+    const theProject = await getRepo(userName, repoName, targetDate);
+    // const theProject = {
+    // 	projectID: '469475772',
+    // 	projectTitle: 'OnTrack',
+    // 	projectUrl: 'https://github.com/Feortegas/OnTrack',
+    // 	username: 'Feortegas',
+    // 	completionDate: '03/23/2022',
+    // };
 
-		try {
-			await addProject({
-				variables: {
-					projectID,
-					projectTitle,
-					projectURL,
-					username,
-					completionDate,
-				}
-			});
+    const projectID = theProject.projectID;
+    const projectTitle = theProject.projectTitle;
+    const projectURL = theProject.projectURL;
+    const username = theProject.username;
+    const completionDate = theProject.completionDate;
 
-			// clear form value
-			setUsername('');
-			setRepoName('');
-			// setTargetDate('');
-		} catch (e) {
-			console.error(e);
-		}
-	};
+    console.log(projectID, projectTitle, projectURL, username, completionDate);
 
-	return (
-		<>
-			<div id='projectModal' className='modal is-active'>
-				<div className='modal-background'></div>
-				<div className='modal-card'>
-					<header className='modal-card-head secondary'>
-						<p className='modal-card-title font'> Choose a current project </p>
-						<button
-							onClick={onClose}
-							className='delete'
-							aria-label='close'></button>
-					</header>
-					<section className='modal-card-body accent'>
-						<div onSubmit={handleFormSubmit}>
-							<div className='section font'>
-								<label className='label font'>Github Username</label>
-								<input
-									className='input font primary'
-									type='text'
-									placeholder=''
-									value={userName}
-									onChange={handleChangeUser}
-								/>
-								<label className='label font'>Github Repo</label>
-								{/* temporary hardcode repos - generate list dynamically */}
-								<select value={repoName} onChange={handleChangeRepo}>
-									<option value='reddit-clone'>reddit-clone</option>
-									<option value='OnTrack'>OnTrack</option>
-									<option value='doggy-days'>doggy-days</option>
-								</select>
-								<h3>
-									*Note: OnTrack only works with public GitHub repositories
-								</h3>
-							</div>
-							<div className='section font'>
-								<label className='label font'>Target Date</label>
-								<input
-									type='date'
-								// value={targetDate}
-								// onChange={handleChangeDate}
-								/>
-							</div>
-							<div className='section font'>
-								<button
-									onClick={handleFormSubmit}
-									type='button'
-									className='button is-danger center font'>
-									Confirm Current Project
-								</button>
-								<h3>Warning: This will replace your current project</h3>
-							</div>
-						</div>
-					</section>
-					<footer className='modal-card-foot secondary'>
-						<button
-							onClick={onClose}
-							type='button'
-							className='button primary font'>
-							Back
-						</button>
-					</footer>
-				</div>
-			</div>
-		</>
-	);
+    try {
+      await addProject({
+        variables: {
+          projectID,
+          projectTitle,
+          projectURL,
+          username,
+          completionDate,
+        },
+      });
+
+      // clear form value
+      setUsername('');
+      setRepoName('');
+      setTargetDate('');
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  return (
+    <>
+      <div id='projectModal' className='modal is-active'>
+        <div className='modal-background'></div>
+        <div className='modal-card'>
+          <header className='modal-card-head secondary'>
+            <p className='modal-card-title font'> Choose a current project </p>
+            <button
+              onClick={onClose}
+              className='delete'
+              aria-label='close'
+            ></button>
+          </header>
+          <section className='modal-card-body accent'>
+            <div onSubmit={handleFormSubmit}>
+              <div className='section font'>
+                <label className='label font'>Github Username</label>
+
+                <input
+                  autoFocus
+                  className='input font primary'
+                  type='text'
+                  placeholder=''
+                  value={userName}
+                  onChange={(event) => setUsername(event.target.value)}
+                />
+                <div>&nbsp;</div>
+                <button className='button is-info' onClick={handleChangeUser}>
+                  Find Repositories
+                </button>
+                <p className='label font'>
+                  Showing repositories for...{' '}
+                  <strong className='project-title'>{delayedUserName}</strong>
+                </p>
+                {/* generate list dynamically */}
+                <div>
+                  {theRepos.length ? (
+                    <select value={repoName} onChange={handleChangeRepo}>
+                      <option>choose your repo</option>
+                      {theRepos.map((repo) => (
+                        <option value={repo} key={repo}>
+                          {repo}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <p>no username selected</p>
+                  )}
+                </div>
+                <h3>
+                  *Note: OnTrack only works with public GitHub repositories
+                </h3>
+              </div>
+              <div className='section font'>
+                <label className='label font'>Target Date</label>
+                <input
+                  type='date'
+                  value={targetDate}
+                  onChange={(event) => setTargetDate(event.target.value)}
+                />
+              </div>
+              <div className='section font'>
+                <button
+                  onClick={handleFormSubmit}
+                  type='button'
+                  className='button is-danger center font'
+                >
+                  Confirm Current Project
+                </button>
+                <h3>Warning: This will replace your current project</h3>
+              </div>
+            </div>
+          </section>
+          <footer className='modal-card-foot secondary'>
+            <button
+              onClick={onClose}
+              type='button'
+              className='button primary font'
+            >
+              Back
+            </button>
+          </footer>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default ProjectModal;

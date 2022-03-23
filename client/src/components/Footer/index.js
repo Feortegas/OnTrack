@@ -1,25 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import './footer.css';
 
 function Footer() {
   return (
     <footer>
-      <ul className="footer-container">
-        <li className="footer-li" id="meet-us">
-          <Link to="meetTheDevs" className="meet-the-devs">Meet the devs</Link>
+      <ul className='footer-container'>
+        <li className='footer-li' id='meet-us'>
+          <Link to='meetTheDevs' className='meet-the-devs'>
+            Meet the devs
+          </Link>
         </li>
-        <li className="footer-li" id="on-track">
+        <li className='footer-li' id='on-track'>
           ©OnTrack
         </li>
-        <li className="footer-li" id="cute">
+        <li className='footer-li' id='github'>
           <a
-            id="cute-anchor"
-            href="https://explore.org/livecams/dog-bless-you/puppy-whelping-room"
-            target="_blank"
-            rel="noopener noreferrer"
+            id='github-anchor'
+            href='https://github.com/Feortegas/OnTrack'
+            target='_blank'
+            rel='noopener noreferrer'
           >
-            Something cute
+            <FontAwesomeIcon icon={faGithub}></FontAwesomeIcon>
+            &nbsp;GitHub Repo
           </a>
         </li>
       </ul>

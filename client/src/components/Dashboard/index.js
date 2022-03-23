@@ -4,29 +4,6 @@ import { useQuery } from '@apollo/client';
 import { QUERY_PROJECTS } from '../../utils/queries';
 
 function Dashboard() {
-  const [progressValues] = [
-    {
-      days: '13',
-      capacity: '15',
-      hours: '185',
-    },
-  ];
-
-  function daysRemaining() {}
-
-  const projected =
-    progressValues.hours - progressValues.capacity * progressValues.days;
-
-  const remaining = progressValues.hours / progressValues.days;
-
-  function onTrack() {
-    if (remaining <= projected) {
-      return 'Behind';
-    } else {
-      return 'OnTrack';
-    }
-  }
-
   // use useQuery hook to make query request
   const { loading, data } = useQuery(QUERY_PROJECTS);
   const projects = data?.projects || [];
@@ -42,6 +19,39 @@ function Dashboard() {
   }
 
   const activeProjectIndex = data.projects.length - 1;
+
+  const [progressValues] = [
+    {
+      capacity: '15',
+      hours: '185',
+    },
+  ];
+
+  function daysRemaining() {
+    var today = new Date();
+    var completionDate = new Date(projects[activeProjectIndex].completionDate);
+    var diff = Math.abs(today - completionDate);
+    const days = Math.floor(diff / (24 * 60 * 60 * 1000));
+
+    return days;
+  }
+
+  //currently days is the only element that is dynamic, capactiy and hours are hard coded
+
+  const projected =
+    progressValues.hours -
+    progressValues.capacity * projects[activeProjectIndex].completionDate;
+
+  const remaining =
+    progressValues.hours / projects[activeProjectIndex].completionDate;
+
+  function onTrack() {
+    if (remaining <= projected) {
+      return 'Behind';
+    } else {
+      return 'OnTrack';
+    }
+  }
 
   return (
     <>
@@ -66,7 +76,7 @@ function Dashboard() {
                   <div className='calendar accent '>
                     <br />
                     <div className='is-size-4 has-text-centered font has-text-weight-semibold'>
-                      {progressValues.days}
+                      {daysRemaining()}
                     </div>
                     <br />
                   </div>
@@ -75,7 +85,7 @@ function Dashboard() {
               <div>
                 <div className='has-text-centered has-text-weight-semibold is-size-4 project-title'>
                   <p>Your project is </p>{' '}
-                  <p className={`${onTrack ? 'success' : 'warning'}`}>
+                  <p className={`${onTrack ? 'success' : 'has-text-danger'}`}>
                     {onTrack()}
                   </p>
                 </div>
@@ -93,21 +103,23 @@ function Dashboard() {
                 <div className=' table columns box is-justify-content-center secondary '>
                   <div className='column accent'>
                     <p className='project-title has-text-weight-semibold'>
-                      Unassigned Issues:
-                    </p>
-                    <p className='font'>5</p>
-                  </div>
-                  <div className='column accent'>
-                    <p className='project-title has-text-weight-semibold'>
-                      Assigned Issues:
-                    </p>
-                    <p className='font'>21</p>
-                  </div>
-                  <div className='column accent'>
-                    <p className='project-title has-text-weight-semibold'>
                       Total # of Issues:
                     </p>
-                    <p className='font'>26</p>
+                    <p className='font'>
+                      {projects[activeProjectIndex].issueCount}
+                    </p>
+                  </div>
+                  <div className='column accent'>
+                    <p className='project-title has-text-weight-semibold'>
+                      unused
+                    </p>
+                    <p className='font'>%</p>
+                  </div>
+                  <div className='column accent'>
+                    <p className='project-title has-text-weight-semibold'>
+                      unused
+                    </p>
+                    <p className='font'>%</p>
                   </div>
                   <div className='column accent'>
                     <p className='project-title has-text-weight-semibold'>

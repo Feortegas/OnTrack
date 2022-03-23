@@ -21,21 +21,22 @@ const getRepos = async (user) => {
 };
 
 // fetch single user repo from the api url
-const getRepo = async (user, repo, targetDate) => {
+const getRepo = async (user, repo) => {
 	// format the github api url
 	try {
 		const apiUrl = `https://api.github.com/repos/${user}/${repo}`;
-		let repoObj = {};
+		// let repoObj = {};
 		const res = await fetch(apiUrl);
 		const data = await res.json();
-		repoObj = {
-			projectID: data.id,
-			projectTitle: data.name,
-			projectURL: data.html_url,
-			username: data.owner.login,
-			completionDate: targetDate,
-		};
-		return repoObj;
+		return data;
+
+		// repoObj = {
+		// 	projectID: data.id,
+		// 	projectTitle: data.name,
+		// 	projectURL: data.html_url,
+		// 	username: data.owner.login,
+		// };
+		// return repoObj;
 	} catch (err) {
 		console.error(err);
 	}

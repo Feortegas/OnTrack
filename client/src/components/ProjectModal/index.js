@@ -15,37 +15,37 @@ const ProjectModal = ({ onClose }) => {
   const [theRepos, setTheRepos] = useState([]);
   // save project to Database
 
-	const [addProject] = useMutation(ADD_PROJECT);
-	const [addContributor] = useMutation(ADD_CONTRIBUTOR);
-	const [addIssue] = useMutation(ADD_ISSUE);
-	// const [addProject, { error }] = useMutation(ADD_PROJECT, {
-	// 	update(cache, { data: { addProject } }) {
-	// 		try {
-	// 			// update project array's cache
-	// 			// could potentially not exist yet, so wrap in a try/catch
-	// 			const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
-	// 			cache.writeQuery({
-	// 				query: QUERY_PROJECTS,
-	// 				data: { projects: [addProject, ...projects] },
-	// 			});
-	// 		} catch (e) {
-	// 			console.error(e);
-	// 		}
-	// 	},
-	// });
+  const [addProject] = useMutation(ADD_PROJECT);
+  const [addContributor] = useMutation(ADD_CONTRIBUTOR);
+  const [addIssue] = useMutation(ADD_ISSUE);
+  // const [addProject, { error }] = useMutation(ADD_PROJECT, {
+  // 	update(cache, { data: { addProject } }) {
+  // 		try {
+  // 			// update project array's cache
+  // 			// could potentially not exist yet, so wrap in a try/catch
+  // 			const { projects } = cache.readQuery({ query: QUERY_PROJECTS });
+  // 			cache.writeQuery({
+  // 				query: QUERY_PROJECTS,
+  // 				data: { projects: [addProject, ...projects] },
+  // 			});
+  // 		} catch (e) {
+  // 			console.error(e);
+  // 		}
+  // 	},
+  // });
 
   // update state based on form input changes
   //wait for user to stop typing before API call
-  useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
-      setDelayedUsername(userName);
-    }, 3000);
+  // useEffect(() => {
+  //   const delayDebounceFn = setTimeout(() => {
+  //     setDelayedUsername(userName);
+  //   }, 3000);
 
-    return () => clearTimeout(delayDebounceFn);
-  }, [userName]);
+  //   return () => clearTimeout(delayDebounceFn);
+  // }, [userName]);
 
   const handleChangeUser = async () => {
-    setUsername(delayedUserName);
+    // setUsername(delayedUserName);
 
     // theRepos is an array of repos, return of a promise from the API fetch
     const repos = await getRepos(userName);
@@ -62,7 +62,7 @@ const ProjectModal = ({ onClose }) => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     // const targetDate = '03/23/2022';
-    const theProject = await getRepo(userName, repoName, targetDate);
+    const theProject = await getRepo(userName, repoName);
     // const theProject = {
     // 	projectID: '469475772',
     // 	projectTitle: 'OnTrack',
@@ -71,15 +71,15 @@ const ProjectModal = ({ onClose }) => {
     // 	completionDate: '03/23/2022',
     // };
 
-    const projectID = theProject.projectID;
-    const projectTitle = theProject.projectTitle;
-    const projectURL = theProject.projectURL;
-    const username = theProject.username;
-    const completionDate = theProject.completionDate;
+    const projectID = theProject.id;
+    const projectTitle = theProject.name;
+    const projectURL = theProject.html_url;
+    const username = theProject.owner.login;
+    const completionDate = targetDate;
 
-    console.log(projectID, projectTitle, projectURL, username, completionDate);
-
+    
     try {
+      console.log(projectID, projectTitle, projectURL, username, completionDate);
       await addProject({
         variables: {
           projectID,

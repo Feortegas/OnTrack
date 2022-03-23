@@ -3,7 +3,12 @@ import './projectmodal.css';
 import { useMutation } from '@apollo/client';
 import { ADD_PROJECT, ADD_CONTRIBUTOR, ADD_ISSUE } from '../../utils/mutations';
 import { QUERY_PROJECTS } from '../../utils/queries';
-import { getRepo, getRepos, getIssues, getContributors } from '../../api/github';
+import {
+  getRepo,
+  getRepos,
+  getIssues,
+  getContributors,
+} from '../../api/github';
 // getRepos returns an Array of Repos.name from the API
 // use it to build the dropdown list dynamically
 
@@ -78,9 +83,14 @@ const ProjectModal = ({ onClose }) => {
     const username = theProject.owner.login;
     const completionDate = targetDate;
 
-
     try {
-      console.log(projectID, projectTitle, projectURL, username, completionDate);
+      console.log(
+        projectID,
+        projectTitle,
+        projectURL,
+        username,
+        completionDate
+      );
       await addProject({
         variables: {
           projectID,
@@ -94,17 +104,21 @@ const ProjectModal = ({ onClose }) => {
 
       for (let index = 0; index < theContributors.length; index++) {
         await addContributor({
-          variables: { username: theContributors[index].login, avatar_url: theContributors[index].avatar_url, projectTitle: projectTitle }
+          variables: {
+            username: theContributors[index].login,
+            avatar_url: theContributors[index].avatar_url,
+            projectTitle: projectTitle,
+          },
         });
-      };
+      }
 
       const theIssues = await getIssues(userName, repoName);
 
       for (let index = 0; index < theIssues.length; index++) {
         await addIssue({
-          variables: { title: theIssues[index], projectTitle: projectTitle }
+          variables: { title: theIssues[index], projectTitle: projectTitle },
         });
-      };
+      }
 
       // clear form value
       setUsername('');
@@ -146,7 +160,7 @@ const ProjectModal = ({ onClose }) => {
                   Find Repositories
                 </button>
                 <p className='label font'>
-                  Showing repositories for...{' '}
+                  {/* Showing repositories for...{' '} */}
                   <strong className='project-title'>{delayedUserName}</strong>
                 </p>
                 {/* generate list dynamically */}
@@ -161,7 +175,7 @@ const ProjectModal = ({ onClose }) => {
                       ))}
                     </select>
                   ) : (
-                    <p>no username selected</p>
+                    <p>&nbsp;</p>
                   )}
                 </div>
                 <h3>

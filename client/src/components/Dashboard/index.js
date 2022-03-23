@@ -37,9 +37,9 @@ function Dashboard() {
   function onTrack() {
     console.log(daysRemaining);
     if (daysRemaining * teamCapacity <= remainingWork) {
-      return 'Behind';
+      return false;
     } else {
-      return 'OnTrack';
+      return true;
     }
   }
 
@@ -53,8 +53,7 @@ function Dashboard() {
             <div className='container'>
               <div className='section'>
                 <h2 className='has-text-centered has-text-weight-semibold is-size-3 project-title'>
-                  {activeProject.username} /{' '}
-                  {activeProject.projectTitle}
+                  {activeProject.username} / {activeProject.projectTitle}
                 </h2>
               </div>
 
@@ -75,8 +74,8 @@ function Dashboard() {
               <div>
                 <div className='has-text-centered has-text-weight-semibold is-size-4 project-title'>
                   <p>Your project is </p>{' '}
-                  <p className={`${onTrack ? 'success' : 'has-text-danger'}`}>
-                    {onTrack()}
+                  <p className={onTrack() ? 'success' : 'has-text-danger'}>
+                    {onTrack() ? 'OnTrack' : 'Behind'}
                   </p>
                 </div>
                 <br />
@@ -95,9 +94,7 @@ function Dashboard() {
                     <p className='project-title has-text-weight-semibold'>
                       Total # of Issues:
                     </p>
-                    <p className='font'>
-                      {activeProject.issueCount}
-                    </p>
+                    <p className='font'>{activeProject.issueCount}</p>
                   </div>
                   <div className='column accent'>
                     <p className='project-title has-text-weight-semibold'>

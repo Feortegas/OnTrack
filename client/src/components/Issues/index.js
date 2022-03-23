@@ -3,7 +3,6 @@ import { useQuery } from '@apollo/client';
 import { QUERY_PROJECTS } from '../../utils/queries';
 
 function Issues() {
-
   // use useQuery hook to make query request
   const { loading, data } = useQuery(QUERY_PROJECTS);
   const projects = data?.projects || [];
@@ -43,16 +42,16 @@ function Issues() {
 
           <div className='section'>
             <div>
-              <ul className='columns'>
+              <div className='columns is-flex-wrap-wrap '>
                 {activeProject.issues.map((issue) => (
-                  <li className='column container '>
-                    <div className='card primary'>
-                      <h3 className='secondary has-text-centered font top is-size-5'>
+                  <div className='column card primary'>
+                    <header className='card-header'>
+                      <h3 className='secondary card-header-title has-text-centered font top is-size-6 '>
                         {issue.title}
                       </h3>
-
-                      {/* set individual issue duration */}
-
+                    </header>
+                    {/* set individual issue duration */}
+                    <div className='card-content accent'>
                       <div className='field has-addons'>
                         <div className='control is-expanded'>
                           <input
@@ -61,16 +60,16 @@ function Issues() {
                             placeholder={`${issue.duration}`}
                           ></input>
                         </div>
-                        <div className='control'>
-                          <button type='submit' className='button accent font'>
+                        <div className='control '>
+                          <button type='submit' className='button accent font '>
                             Set Duration
                           </button>
                         </div>
                       </div>
                     </div>
-                  </li>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         </div>
